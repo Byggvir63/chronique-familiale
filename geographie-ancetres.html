@@ -152,7 +152,7 @@
     width: 100%;
     max-width: 600px;
     height: auto;
-    margin: auto;
+    margin: 10px auto 16px;
     border: 1px solid var(--ink-soft);
     padding: 4px;
     background: var(--paper);
@@ -164,6 +164,45 @@
     margin: 0 0 12px;
     font-size: 1rem;
     text-align: justify;
+  }
+ 
+  .sec-link {
+    display: block;
+    margin: 4px 0 14px;
+    font-size: 0.98rem;
+  }
+  .sec-link a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 1px;
+  }
+  .sec-link a:hover { color: var(--seal); }
+  .sec-link .icon { margin-right: 6px; }
+ 
+  .sec-video {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto 16px;
+    overflow: hidden;
+    border: 1px solid var(--ink-soft);
+    background: #000;
+  }
+  .sec-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .sec-video-caption {
+    text-align: center;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: -8px 0 14px;
   }
  
   .legend {
@@ -318,7 +357,7 @@
   </div>
  
   <footer class="note">
-    Chaque département peut être écrit de trois façons dans l'objet <code>family</code> du <code>&lt;script&gt;</code> : un texte simple (clé <code>villages</code>), une liste de sections à sous-titre + texte + image unique (clé <code>sections</code> avec <code>texte</code>/<code>image</code>), ou — comme l'Ain — des sections à <code>blocks</code> : une suite de paragraphes et d'images dans l'ordre exact où ils doivent apparaître, ce qui permet d'intercaler plusieurs photos au fil du texte.
+    Chaque département peut être écrit de trois façons dans l'objet <code>family</code> du <code>&lt;script&gt;</code> : un texte simple (clé <code>villages</code>), une liste de sections à sous-titre + texte + image unique (clé <code>sections</code> avec <code>texte</code>/<code>image</code>), ou — comme l'Ain — des sections à <code>blocks</code> : une suite d'éléments dans l'ordre exact où ils doivent apparaître. Types de blocs disponibles : <code>texte</code>, <code>image</code> (avec <code>width</code> optionnel), <code>lien</code> (permalien vers un acte ou une source, avec <code>label</code> et <code>href</code>), <code>pdf</code> (même principe pour un document en ligne), et <code>video</code> (intégration YouTube via <code>src</code> au format embed, avec <code>titre</code> optionnel en légende).
   </footer>
  
 </div>
@@ -358,7 +397,20 @@
     }
     return blocks.map(b => {
       if (b.type === 'image') {
-        return '<img class="sec-img" src="' + b.src + '" alt="">';
+        const styleAttr = b.width ? ' style="max-width:' + b.width + '"' : '';
+        return '<img class="sec-img" src="' + b.src + '"' + styleAttr + ' alt="">';
+      }
+      if (b.type === 'lien') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">↗</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'pdf') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">📄</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'video') {
+        const caption = b.titre ? '<p class="sec-video-caption">' + b.titre + '</p>' : '';
+        return '<div class="sec-video"><iframe src="' + b.src + '" allowfullscreen loading="lazy"></iframe></div>' + caption;
       }
       return '<p class="sec-text">' + b.texte + '</p>';
     }).join('');
