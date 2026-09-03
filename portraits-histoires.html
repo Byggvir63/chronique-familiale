@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portraits &amp; Histoires</title>
+<style>
+  :root {
+    --paper: #e9ddc0;
+    --paper-dark: #ddcda3;
+    --card: #e2d4ac;
+    --ink: #2b2015;
+    --ink-soft: #5a4c38;
+    --seal: #6b1f2b;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.06), transparent 55%);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    padding: 24px 20px 60px;
+  }
+
+  .page { max-width: 1200px; margin: 0 auto; }
+
+  header.masthead {
+    border-bottom: 3px double var(--ink-soft);
+    padding-bottom: 14px;
+    margin-bottom: 26px;
+  }
+
+  header.masthead .kicker {
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+
+  header.masthead h1 {
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    margin: 0 0 8px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  header.masthead p.lede {
+    max-width: 78ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--ink-soft);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+  }
+  .card:hover { filter: brightness(1.05); }
+  .card.selected {
+    outline: 2px solid var(--seal);
+    outline-offset: -2px;
+  }
+
+  .card .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--seal);
+    border-bottom: 1px solid rgba(107,31,43,0.4);
+    margin-bottom: 8px;
+  }
+
+  .card h3 {
+    font-size: 1.08rem;
+    font-weight: 400;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+
+  .card .teaser {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .panel {
+    background: var(--paper-dark);
+    border: 1px solid var(--ink-soft);
+    padding: 24px 30px;
+    margin-top: 28px;
+    min-height: 140px;
+  }
+
+  .panel h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 4px;
+    border-bottom: 1px solid rgba(43,32,21,0.3);
+    padding-bottom: 12px;
+  }
+
+  .panel .tag-line {
+    font-style: italic;
+    color: var(--seal);
+    margin: 10px 0 6px;
+    font-size: 0.95rem;
+  }
+
+  .panel .placeholder {
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .sec-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--seal);
+    margin: 20px 0 8px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(43,32,21,0.25);
+  }
+  .sec-block:first-of-type .sec-title { margin-top: 16px; }
+
+  .sec-img {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 10px auto 4px;
+    border: 1px solid var(--ink-soft);
+    padding: 4px;
+    background: var(--paper);
+  }
+
+  .sec-img-caption {
+    text-align: center;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+
+  .sec-link {
+    display: block;
+    margin: 4px 0 14px;
+    font-size: 0.98rem;
+  }
+  .sec-link a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 1px;
+  }
+  .sec-link a:hover { color: var(--seal); }
+  .sec-link .icon { margin-right: 6px; }
+
+  .sec-video {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto 4px;
+    overflow: hidden;
+    border: 1px solid var(--ink-soft);
+    background: #000;
+  }
+  .sec-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .sec-text {
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 auto 12px;
+    font-size: 1rem;
+    max-width: 82ch;
+    text-align: justify;
+  }
+
+  footer.note {
+    max-width: 84ch;
+    margin: 30px auto 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    border-top: 1px dashed rgba(43,32,21,0.35);
+    padding-top: 14px;
+  }
+  footer.note code { background: rgba(43,32,21,0.08); padding: 1px 5px; font-size: 0.82rem; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="kicker">Chronique familiale — section Portraits &amp; Histoires</p>
+    <h1>Portraits &amp; Histoires</h1>
+    <p class="lede">Des récits personnels, des trajectoires singulières, des anecdotes qui ne relèvent pas directement des grands épisodes de l'Histoire nationale. Touchez une carte pour lire son détail ci-dessous. Trois sujets supplémentaires (Titre 5, 6, 7) attendent encore leur contenu.</p>
+  </header>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="panel" id="panel">
+    <h2 id="panel-title">Choisissez un portrait</h2>
+    <p class="placeholder" id="panel-body">Touchez une carte ci-dessus pour afficher son détail ici.</p>
+  </div>
+
+  <footer class="note">
+    Pour ajouter un portrait, complétez le tableau <code>portraits</code> dans le <code>&lt;script&gt;</code> avec un nouvel objet <code>{ id, titre, tag, teaser, sections }</code> — la grille et le panneau de détail s'adaptent automatiquement. Chaque section accepte le même format que sur les autres pages de la Chronique : texte simple (<code>texte</code>/<code>image</code>), ou une suite de <code>blocks</code> (texte, image avec légende, lien, pdf, vidéo) pour les récits plus riches.
+  </footer>
+
+</div>
+
+<script>
+  const portraits = [{"id": "butavand", "titre": "Feréol Butavand, ingénieur des Ponts et Chaussées", "tag": "Ain → Algérie → Monaco", "teaser": "D'un chantier anti-inondations à Alger à la controverse de Glozel et au mystère d'Alésia.", "sections": [{"titre": "Une enfance provinciale et une excellence scolaire", "texte": "Thomas Ferréol Jean-Baptiste Butavand naît le 31 juillet 1875 à Mornay, dans l'Ain, dans une France encore marquée par la défaite de 1870. Son père est Pierre Joseph Butavand et sa mère Benoîte Journoud, fille d'Antoine Journoud et de Marie Anne Veleat, et sœur d'Étienne Journoud."}, {"titre": "Les débuts et l'Algérie", "texte": "Devenu ingénieur, il est nommé « ingénieur de l'Arrondissement Est d'Alger » en 1902, présentant un projet de préservation du quartier Maison Carrée contre les inondations en disposant des lits supérieurs du Hamiz et de l'Harrach comme bassins de régulation. En 1905, il devient ingénieur de l'Arrondissement urbain et interurbain d'Alger et du port d'Alger, où il pousse l'achèvement de l'arrière-port de l'Agha."}, {"titre": "Apogée à Monaco", "texte": "Il devient Chevalier puis, par décret du 30 janvier 1925, Officier de la Légion d'honneur en tant qu'Ingénieur en Chef hors classe des Ponts et Chaussées, détaché au service de la Principauté de Monaco, où il devient conseiller du Prince. Il collabore avec le Bureau Hydrographique International et rédige des travaux sur les courants marins et la mécanique des marées. Il prend sa retraite du corps des Ponts et Chaussées en octobre 1929."}, {"titre": "La controverse de Glozel", "texte": "En 1924, un jeune agriculteur, Émile Fradin, découvre dans un champ de l'Allier des tablettes et galets gravés attribués par certains à une civilisation préhistorique inconnue. L'affaire devient l'une des plus grandes controverses archéologiques françaises du XXe siècle, entre authenticité revendiquée et soupçons de faux — un sujet auquel Butavand va s'intéresser de près."}, {"titre": "Le mythe de l'Atlantide", "texte": "Dans son ouvrage publié en 1925, La véritable histoire de l'Atlantide, Butavand cherche à dépasser l'image légendaire d'un continent disparu pour proposer une interprétation historique et géographique du récit de Platon. Contrairement aux théories qui situent l'Atlantide dans l'océan Atlantique, il défend une localisation méditerranéenne, autour de régions proches de l'Afrique du Nord."}, {"titre": "Le site d'Alésia", "texte": "C'est avec Alésia que Ferréol Butavand connaît sa plus grande notoriété. Depuis le XIXe siècle, la localisation traditionnellement admise du siège d'Alésia de 52 avant Jésus-Christ est celle d'Alise-Sainte-Reine, en Côte-d'Or, confortée par les fouilles menées sous Napoléon III. Butavand remet pourtant cette interprétation en question, s'inscrivant dans un débat archéologique qui agite encore aujourd'hui les spécialistes."}]}, {"id": "cabijos", "titre": "Marcel Cabijos, maître d'armes à New York", "tag": "Côte-d'Or → France → États-Unis", "teaser": "D'un duel au poignard contre un champion américain à quarante ans d'enseignement de l'escrime à New York.", "sections": [{"titre": "Origines et jeunesse (1893-1914)", "texte": "Marcel Cabijos naît le 8 juin 1893 à Tart-l'Abbaye, en Côte-d'Or, près de Dijon. Son père est Pierre Théodore Cabijos et sa mère Marie Eugénie Laurent, fille de Claude Laurent et d'Anne Chardot, sœur de Héloïse Laurent. Il se passionne très jeune pour l'escrime, initié dès l'âge de douze ans par Denis Naudet, gendarme en retraite, et son fils Ernest, militaire de carrière."}, {"titre": "La Première Guerre mondiale, marin du Jurien de la Gravière", "texte": "Son parcours pendant la Grande Guerre, comme marin à bord du croiseur Jurien de la Gravière, est détaillé dans le chapitre dédié à la Première Guerre mondiale."}, {"titre": "Après-guerre : formation de maître d'armes", "texte": "De retour à la vie civile, Cabijos fait de l'escrime son métier. Il obtient le titre de Maître d'Armes avec les diplômes les plus exigeants de l'époque : celui du Syndicat des Maîtres d'Armes de France et celui de l'Académie d'Épée de Paris. Il enseigne ensuite dans le sud de la France avant de franchir l'Atlantique."}, {"titre": "L'émigration aux États-Unis (1920)", "texte": "En 1920, la YMCA américaine l'invite à venir promouvoir et développer l'escrime outre-Atlantique. Le 6 juillet 1920, à 27 ans, il arrive à New York à bord du Scandinavian, en provenance d'Anvers, accueilli comme champion de la Marine française. Il rejoint le Saltus Fencing Club, au sein de la French YMCA, comme assistant du maître d'armes Martin Capdevielle, puis en devient le maître principal."}, {"titre": "Le maître d'armes de New York", "texte": "Cabijos enseigne dans de nombreux établissements new-yorkais : le Saltus Fencing Club, le McBurney YMCA, la French School for Girls, St. Agatha School, Marymount College, Collegiate School for Boys, Brutus Fencing Club, Vassar College, Lehigh University, la Salle d'Armes Henri IV. Il défend une vision traditionnelle de l'escrime, fondée sur la précision, l'élégance et le respect de l'adversaire."}, {"titre": "Le duel légendaire contre Leo Nunes (1926)", "texte": "En 1926, Cabijos affronte Leo Nunes, champion américain d'épée et de sabre — en acceptant de combattre avec un simple poignard de douze pouces face à l'épée de son adversaire. Il remporte cet affrontement spectaculaire, qui attire l'attention de la presse américaine et française et forge sa réputation de maître exceptionnel."}, {"titre": "Fin de vie et décès (1964)", "texte": "Marcel Cabijos continue d'enseigner presque jusqu'à la fin de sa vie et meurt à New York le 21 novembre 1964, à 71 ans. Sa disparition marque la fin d'une génération de maîtres d'armes européens installés aux États-Unis ; les témoignages publiés après sa mort insistent sur son humilité et son attachement profond à ses élèves."}]}, {"id": "journoud_afrique", "titre": "Jean Journoud en AOF et AEF", "tag": "Sénégal → Cameroun → Tchad", "teaser": "Dix-huit années de carrière coloniale, du port arachidier de Kaolack aux pistes de l'Oubangui-Chari.", "sections": [{"titre": "Le voyage vers le Sénégal", "texte": "Du port de Marseille, des cargos assurent la liaison avec Dakar. De 1922 à 1935, la Compagnie de Navigation Paquet se concentre progressivement sur la ligne Maroc–Afrique Noire. Le paquebot Koutoubia, construit en 1930, reliait Marseille à Dakar avec escales à Tanger, Casablanca et Las Palmas — il sera plus tard réquisitionné puis sabordé en 1942 lors des bombardements du port de Bougie."}, {"titre": "La ville de Kaolack", "texte": "Kaolack est une création coloniale à l'emplacement du village de Ndagane, à 192 km au sud-est de Dakar sur le fleuve Saloum. La culture de l'arachide s'y développe rapidement au début du XXe siècle : en 1929, Kaolack devient le principal port arachidier du Sénégal et de l'AOF, ville commerciale dynamique dont les exportations sont surtout des arachides en coque."}, {"titre": "Le Cameroun et Douala", "texte": "Après 1933, le paquebot Banfora dessert Douala après des escales à Casablanca, Dakar, Sassandra et Lomé. Ancienne colonie allemande partagée après la Première Guerre mondiale entre mandats britannique et français, le Cameroun oriental n'est pas intégré à l'AEF. De janvier 1938 à août 1942, Jean Journoud est à Douala, site portuaire au fond du golfe de Guinée, à l'embouchure du Wouri."}, {"titre": "Le voyage vers l'Afrique équatoriale française", "texte": "En janvier 1946, Jean Journoud passe en camion la frontière séparant le Cameroun de l'AEF, en Oubangui-Chari. Il voyage sur les pistes, s'arrête au village de Bouar où il rencontre le chef local, passe par Goré dans le Logone oriental (Tchad), puis traverse Katoa entre Bongor et Fort-Lamy."}, {"titre": "Fort-Lamy et l'Oubangui-Chari", "texte": "Fort-Lamy, fondée par l'armée française en 1900 au confluent du Chari et de la Logone, ne compte que 17 800 habitants en 1945 mais sert, avec le ralliement du Tchad à la France Libre dès 1940, de base stratégique pour la 2e DB du général Leclerc. En 1946, la guerre terminée, Jean Journoud y assiste à une vente de stocks militaires. Pour l'étape suivante en Oubangui-Chari, il n'a laissé aucune photo personnelle, seulement une série de cartes postales."}]}, {"id": "droux_goy_aef", "titre": "Louis-Gabriel Droux et Lucienne Goy en AEF", "tag": "Brazzaville, 1940-1942", "teaser": "Un fonctionnaire colonial devenu chroniqueur du ralliement de l'AEF, sous le pseudonyme de « Louis Durox ».", "sections": [{"titre": "Une carrière administrative en AEF", "texte": "Louis-Gabriel Droux appartient au corps des Services civils de l'Afrique Équatoriale Française depuis la fin des années 1920 : adjoint des Services civils en Oubangui-Chari en 1928, puis au Gabon en 1936, à Franceville en 1937. C'est donc un homme qui connaît intimement l'administration et le terrain de l'AEF lorsque la guerre éclate en 1939."}, {"titre": "Le ralliement de Brazzaville (28 août 1940)", "texte": "Droux se trouve à Brazzaville au moment du ralliement du Moyen-Congo à la France Libre. Son nom figure parmi les signataires de l'appel de la Ligue Patriotique pour la Liberté et l'Honneur, fondée le 8 août 1940 par un noyau de neuf Brazzavillois pour préparer, dans la clandestinité, le basculement de l'AEF dans le camp de la France Libre — un engagement pris sous l'œil de la police vichyste, non sans risque."}, {"titre": "France d'Abord, le journal de la France Libre en Afrique équatoriale", "texte": "Le bimensuel France d'Abord publie son premier numéro à Brazzaville le 12 janvier 1941, imprimé à Léopoldville. À partir du n°16 (25 septembre 1941), Louis-Gabriel Droux en devient le directeur, sous le pseudonyme de « Louis Durox » — anagramme à peine voilé de son nom. Il y consacre plusieurs longs articles au récit heure par heure des « Trois Glorieuses » du 28 août 1940, et retrace l'ensemble du ralliement de l'Afrique équatoriale."}, {"titre": "Lucienne Goy, gérante légale du journal", "texte": "Henriette Lucienne Goy, sous son nom d'épouse Lucienne Droux, apparaît dès le premier numéro comme « Propriétaire-gérante » de France d'Abord — la responsable légale du journal devant les autorités, fonction qu'elle conserve même après que son mari en devient officiellement directeur. Ce montage s'explique par le statut de fonctionnaire de Louis-Gabriel Droux, qui ne pouvait apparaître lui-même comme responsable légal d'un journal tout en en dirigeant la rédaction sous pseudonyme. Henriette Lucienne Goy a ainsi porté, tout au long de la guerre, la responsabilité officielle de cette entreprise de presse de la France Combattante en Afrique équatoriale."}]}, {"id": "titre5", "titre": "Titre 5", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter."}]}, {"id": "titre6", "titre": "Titre 6", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter."}]}, {"id": "titre7", "titre": "Titre 7", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter."}]}];
+
+  const gridEl = document.getElementById('grid');
+  const panelTitle = document.getElementById('panel-title');
+  const panelBody = document.getElementById('panel-body');
+
+  function renderBlocks(blocks) {
+    if (!blocks || blocks.length === 0) {
+      return '<p class="sec-text placeholder">À compléter.</p>';
+    }
+    return blocks.map(b => {
+      if (b.type === 'image') {
+        const styleAttr = b.width ? ' style="max-width:' + b.width + '"' : '';
+        const caption = b.legende ? '<p class="sec-img-caption">' + b.legende + '</p>' : '';
+        return '<img class="sec-img" src="' + b.src + '"' + styleAttr + ' alt="">' + caption;
+      }
+      if (b.type === 'lien') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">↗</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'pdf') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">📄</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'video') {
+        const caption = b.titre ? '<p class="sec-img-caption">' + b.titre + '</p>' : '';
+        return '<div class="sec-video"><iframe src="' + b.src + '" allowfullscreen loading="lazy"></iframe></div>' + caption;
+      }
+      return '<p class="sec-text">' + b.texte + '</p>';
+    }).join('');
+  }
+
+  function renderSections(sections) {
+    if (!sections || sections.length === 0) {
+      return '<p class="placeholder">Aucun contenu rédigé pour l\'instant.</p>';
+    }
+    return sections.map(s => {
+      let inner = '<h3 class="sec-title">' + s.titre + '</h3>';
+      if (s.blocks) {
+        inner += renderBlocks(s.blocks);
+      } else {
+        inner += (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '');
+        inner += '<p class="sec-text">' + s.texte + '</p>';
+      }
+      return '<div class="sec-block">' + inner + '</div>';
+    }).join('');
+  }
+
+  function showPortrait(id) {
+    document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+    const cardEl = document.getElementById('card-' + id);
+    if (cardEl) cardEl.classList.add('selected');
+
+    const p = portraits.find(x => x.id === id);
+    if (!p) return;
+
+    panelTitle.textContent = p.titre;
+    panelBody.innerHTML =
+      '<p class="tag-line">' + p.tag + '</p>' +
+      renderSections(p.sections);
+
+    document.getElementById('panel').scrollIntoView({block: 'nearest', behavior: 'smooth'});
+  }
+
+  portraits.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'card-' + p.id;
+    card.innerHTML =
+      '<span class="tag">' + p.tag + '</span>' +
+      '<h3>' + p.titre + '</h3>' +
+      '<p class="teaser">' + p.teaser + '</p>';
+    card.addEventListener('click', () => showPortrait(p.id));
+    gridEl.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
