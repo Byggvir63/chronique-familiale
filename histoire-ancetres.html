@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos ancêtres et l'Histoire</title>
+<style>
+  :root {
+    --paper: #e9ddc0;
+    --paper-dark: #ddcda3;
+    --ink: #2b2015;
+    --ink-soft: #5a4c38;
+    --seal: #6b1f2b;
+    --band-empty: #c9bb95;
+    --band-empty-line: #ab9c72;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.06), transparent 55%);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    padding: 24px 20px 60px;
+  }
+
+  .page { max-width: 1400px; margin: 0 auto; }
+
+  header.masthead {
+    border-bottom: 3px double var(--ink-soft);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+
+  header.masthead .kicker {
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+
+  header.masthead h1 {
+    font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+    margin: 0 0 8px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  header.masthead p.lede {
+    max-width: 78ch;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .timeline {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--ink-soft);
+    background: var(--paper-dark);
+    overflow-x: auto;
+  }
+
+  .period {
+    flex: 1 1 0;
+    min-width: 108px;
+    padding: 16px 10px;
+    text-align: center;
+    border-right: 1px solid rgba(43,32,21,0.25);
+    cursor: pointer;
+    background: var(--band-empty);
+    transition: filter 0.15s ease;
+    position: relative;
+  }
+  .period:last-child { border-right: none; }
+  .period:hover { filter: brightness(1.08); }
+  .period.has-content { background: var(--seal); }
+  .period.has-content .period-label,
+  .period.has-content .period-range { color: #f1e6d8; }
+  .period.selected { outline: 2px solid var(--ink); outline-offset: -2px; }
+
+  .period-label {
+    display: block;
+    font-size: 0.86rem;
+    line-height: 1.25;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .period-range {
+    display: block;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .timeline-caption {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    text-align: center;
+  }
+
+  .panel {
+    background: var(--paper-dark);
+    border: 1px solid var(--ink-soft);
+    padding: 24px 30px;
+    margin-top: 26px;
+    min-height: 160px;
+  }
+
+  .panel h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 4px;
+    border-bottom: 1px solid rgba(43,32,21,0.3);
+    padding-bottom: 12px;
+  }
+
+  .panel .range { font-style: italic; color: var(--ink-soft); margin: 10px 0 6px; font-size: 0.95rem; }
+  .panel .placeholder { color: var(--ink-soft); font-style: italic; line-height: 1.6; margin-top: 14px; }
+
+  .sec-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--seal);
+    margin: 22px 0 8px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(43,32,21,0.25);
+  }
+  .sec-block:first-of-type .sec-title { margin-top: 16px; }
+
+  .sec-img {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    margin: 4px 0 10px;
+    border: 1px solid var(--ink-soft);
+    padding: 4px;
+    background: var(--paper);
+  }
+
+  .sec-text {
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 0 4px;
+    font-size: 1rem;
+    max-width: 82ch;
+  }
+
+  footer.note {
+    max-width: 84ch;
+    margin: 30px auto 0;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    border-top: 1px dashed rgba(43,32,21,0.35);
+    padding-top: 14px;
+  }
+  footer.note code { background: rgba(43,32,21,0.08); padding: 1px 5px; font-size: 0.82rem; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <p class="kicker">Chronique familiale — section Nos ancêtres et l'Histoire</p>
+    <h1>Une frise pour traverser les régimes</h1>
+    <p class="lede">Dix périodes politiques, de l'Ancien Régime à aujourd'hui. Six d'entre elles portent déjà un chapitre réel, repris de la Chronique ; les autres attendent encore leur texte. Touchez une période sur la frise pour lire son détail ci-dessous.</p>
+  </header>
+
+  <div class="timeline" id="timeline"></div>
+  <p class="timeline-caption">Frise chronologique par régime politique. Les périodes en rouge sceau portent déjà un ou plusieurs chapitres.</p>
+
+  <div class="panel" id="panel">
+    <h2 id="panel-title">Choisissez une période</h2>
+    <p class="placeholder" id="panel-body">Touchez une période sur la frise ci-dessus pour afficher son détail ici.</p>
+  </div>
+
+  <footer class="note">
+    Même mécanique que les cartes de France et du monde : chaque période est une entrée de l'objet <code>content</code> dans le <code>&lt;script&gt;</code>, avec une liste de <code>sections</code> (sous-titre, texte, image optionnelle). Pour ajouter un chapitre à une période encore vide, il suffit de compléter son tableau <code>sections</code>.
+  </footer>
+
+</div>
+
+<script>
+  const periods = [{"id": "ancien_regime", "label": "Ancien Régime", "range": "avant 1789"}, {"id": "revolution", "label": "Révolution Française", "range": "1789–1799"}, {"id": "premier_empire", "label": "Premier Empire", "range": "1799–1815"}, {"id": "restauration", "label": "Restauration", "range": "1815–1848"}, {"id": "second_empire", "label": "Second Empire", "range": "1852–1870"}, {"id": "troisieme_rep_avant", "label": "IIIe République d'avant-guerre", "range": "1870–1914"}, {"id": "ww1", "label": "Première Guerre mondiale", "range": "1914–1918"}, {"id": "entre_deux_guerres", "label": "Entre deux-guerres", "range": "1918–1939"}, {"id": "ww2", "label": "Seconde Guerre mondiale", "range": "1939–1945"}, {"id": "contemporaine", "label": "Époque contemporaine", "range": "depuis 1945"}];
+  const content = {"ancien_regime": {"sections": [{"titre": "Les protestants du Moyen-Poitou (1681-1787)", "texte": "Moncoutant et ses environs immédiats forment au XVIIe siècle une enclave réformée d'une vivacité remarquable au milieu du Bocage bressuirais, que les historiens locaux surnomment la « petite Genève » de la Gâtine. C'est au sein de cette communauté que naît, vers 1710, Pierre Guérin, estoffeur en laine. En 1681, l'intendant Marillac invente les dragonnades : le logement forcé, chez les familles réformées, de dragons chargés de rendre la vie de leurs hôtes si insupportable qu'ils finiraient par abjurer. À Moncoutant même, les registres paroissiaux conservent la trace de plus de 370 abjurations forcées. Mais ces conversions, obtenues sous la contrainte, ne sont que des signatures sur le papier : la population reste, dans son immense majorité, fidèle à la foi réformée, et se contente désormais de la pratiquer dans le plus grand secret. N'ayant ni les moyens ni l'espoir de lever une armée contre les troupes du roi, les réformés du Poitou choisissent deux voies : l'exil clandestin par la mer, vers l'Angleterre, les Provinces-Unies ou l'Allemagne, ou bien la résistance dite « du Désert », qui consiste à poursuivre le culte réformé en cachette, au cœur des bois et des vallons du Bocage."}, {"titre": "La pacification de la Corse (1769)", "texte": "Noël Jourda de Vaux naît le 12 mars 1705 au château de Vaux, à Saint-Julien-du-Pinet, dans le Velay (aujourd'hui en Haute-Loire), fils de Jean Baptiste Jourda de Vaux, comte de Vaux, et de Marie-Anne de Saint-Germain. C'est la conquête de la Corse qui assure à Noël Jourda de Vaux sa place dans l'histoire militaire française. En février 1769, alors âgé de soixante-quatre ans, le comte de Vaux reçoit le commandement des forces françaises en Corse, où la République corse de Pascal Paoli résiste depuis plusieurs années aux tentatives de mainmise française. Il débarque sur l'île le 7 avril 1769 à la tête d'environ trente mille hommes. Sa campagne est d'une fermeté brutale : ne rien épargner des moissons, des vignes ni des oliviers de ceux qui refuseraient de se soumettre. La bataille décisive se joue à Ponte Novu. Pascal Paoli choisit l'exil pour l'Angleterre le 13 juin 1769. Le 22 juin, le général de Vaux écrit au duc de Choiseul cette phrase restée célèbre : « De ce jour, toute la Corse est soumise au Roy. » Il est nommé gouverneur général de l'île et conserve ce commandement jusqu'en 1779, date à laquelle il cède la place à son second, le comte de Marbeuf — celui-là même qui deviendra plus tard le protecteur de la famille Bonaparte à Ajaccio."}]}, "revolution": {"sections": [{"titre": "La Terreur et la guerre de Vendée", "texte": "Ce chapitre n'est pas encore rédigé dans la Chronique déposée. D'après nos échanges précédents : il concernerait Jean Dugas, guillotiné à Niort en 1794, dans le contexte des guerres de Vendée. À compléter avec le texte réel une fois rédigé."}]}, "premier_empire": {"sections": [{"titre": "Contexte : les guerres napoléoniennes (1799-1815)", "texte": "Le conflit débute après la rupture du traité d'Amiens en mai 1803 et s'inscrit dans le prolongement des guerres de la Révolution française. Napoléon Bonaparte, au pouvoir depuis le coup d'État du 18 Brumaire (9 novembre 1799), est proclamé empereur des Français le 18 mai 1804. Se succèdent les grandes victoires (Austerlitz 1805, Iéna 1806, Wagram 1809) et l'expansion maximale de l'Empire en 1810, avant le désastre de la campagne de Russie en 1812 où l'armée perd plus de 500 000 hommes, la défaite de Leipzig en 1813, l'abdication de 1814, puis Waterloo en 1815. L'ensemble de ces guerres a causé entre 3,5 et 6,5 millions de morts, dont environ 1,5 million pour la France entre 1792 et 1815."}, {"titre": "Edme Lespicier, soldat dans la Grande Armée (1805-1806)", "texte": "Edme Lespicier, fils de Jean Lespicier et de Françoise Joly, naît le 12 février 1784 à Tillenay, en Côte-d'Or. Fusilier dans l'infanterie de ligne, il arrive au corps le 17 octobre 1805. Le registre matricule porte la dernière mention : mort à l'hôpital de Crailsheim le 6 avril 1806, par suite de fièvre épidémique — l'un des innombrables décès de maladie qui, plus encore que les combats, ont décimé la Grande Armée."}, {"titre": "Charles Rouer, artilleur dans la Grande Armée (1805-1813)", "texte": "Charles Rouer naît le 13 février 1782 à Argenton, dans l'Indre, fils de Pierre Rouer et de Jeanne Dechezelle. Conscrit de la classe dite « an XI », il est incorporé au 6e régiment d'artillerie à pied et enchaîne sept années de campagnes ininterrompues entre 1806 et 1812, jusqu'à la retraite de Russie et la campagne d'Allemagne de 1813. Il meurt à l'hôpital de Trèves."}]}, "restauration": {"sections": []}, "second_empire": {"sections": []}, "troisieme_rep_avant": {"sections": []}, "ww1": {"sections": [{"titre": "Contexte : la Première Guerre mondiale (1914-1918)", "texte": "Le conflit débute après l'assassinat de l'archiduc François-Ferdinand à Sarajevo le 28 juin 1914. Le 1er août 1914, la France décrète la mobilisation générale. Après la bataille des Frontières puis celle de la Marne (6-9 septembre 1914), le front se stabilise sur 700 kilomètres : c'est le début de la guerre de tranchées. Suivent les grandes hécatombes de Verdun et de la Somme en 1916, les mutineries de 1917, puis les offensives allemandes du printemps 1918 et la contre-offensive victorieuse des Alliés à partir d'août 1918. L'armistice est signé le 11 novembre 1918. La France termine la guerre avec un bilan de 1,45 million de morts et disparus et 1,9 million de blessés, soit 30 % de sa population active masculine."}, {"titre": "Léon Pierre Mammet", "texte": "Léon Pierre Mammet naît le 7 septembre 1888 à Saint-Étienne-de-Fursac (Creuse), fils d'Eugène Toussaint Mammet et de Geneviève Julienne Jabely. Sa fiche matricule permet de reconstituer un parcours de guerre exceptionnellement long : mobilisé dès août 1914, blessé une première puis une seconde fois en 1915, il combat ensuite à Verdun (avril-juin 1916), dans l'Aisne, sur la Somme, en Champagne, avant de partir pour la campagne d'Italie de novembre 1917 à novembre 1919. Ses séquelles seront reconnues sur plus de dix ans après-guerre."}, {"titre": "Amédée François Marie Roch", "texte": "Meunier devenu soldat, Amédée Roch est d'abord retenu à l'arrière comme meunier au moment de la mobilisation d'août 1914, avant de rejoindre le front avec le 251e régiment d'infanterie fin 1914. Passé de l'infanterie à l'artillerie lourde entre 1916 et 1919, il obtiendra après-guerre la reconnaissance d'une invalidité durable."}, {"titre": "Joseph Rouer", "texte": "Cultivateur indrien, Joseph Rouer devient fantassin au 95e régiment d'infanterie. Il est fait prisonnier de guerre dès les premières semaines du conflit, en août 1914, et connaît plusieurs années de captivité en Allemagne."}, {"titre": "Romain Martin Bes, Mort pour la France", "texte": "Romain Martin Bes naît le 12 novembre 1884 à Sorède (Pyrénées-Orientales), fils de cultivateurs. Devenu facteur des postes à Paris, il est mobilisé au 224e régiment d'infanterie, combat à la bataille de la Marne puis dans les tranchées de l'Aisne, passe l'hiver 1914-1915 dans la guerre des mines de la Somme, et meurt lors de l'offensive d'Artois, à Noulette."}, {"titre": "Charles Jules Feuillepain", "texte": "Charles Jules Feuillepain naît le 29 août 1881 à Saint-Août (Indre), journalier agricole. Mobilisé au 90e régiment d'infanterie, il participe à la retraite puis à la bataille de la Marne, à la course à la mer, et meurt lors de la première bataille d'Ypres, dans l'attaque vers Gravenstafel."}, {"titre": "Jean Baptiste Guigand, disparu à Verdun", "texte": "Jean Baptiste Guigand naît le 5 avril 1885 à Crossac (Loire-Atlantique), cultivateur. Passé du fantassin à l'ordonnance du Train des équipages, il disparaît le 27 juin 1916 lors de l'assaut vers Fleury, à Verdun. Cinq années d'incertitude administrative suivront avant que son sort ne soit officiellement statué."}, {"titre": "Jean Hirat dans les tranchées de 1918", "texte": "Jean Hirat naît le 22 mars 1898 à Saint-Cyr (Haute-Vienne). D'abord jugé trop faible pour la guerre, il n'est incorporé que le 22 avril 1918, à dix-neuf ans, en pleine crise des grandes offensives allemandes. Versé au 9e bataillon du 88e régiment d'infanterie fin juillet 1918, il rejoint son unité au moment de la grande offensive alliée de l'été-automne 1918. Il connaîtra ensuite l'occupation du Rhin et de la Haute-Silésie."}, {"titre": "Clément Auguste Rethoré", "texte": "Clément Auguste Rethoré naît le 14 décembre 1884 à Mauzé-Thouarsais (Deux-Sèvres), fils d'Auguste Rethoré et de Joséphine Grellier. Charron-forgeron de métier, il connaît d'abord une campagne d'Algérie (1904-1907) avant d'être versé, père de six enfants, à l'arrière pendant la Grande Guerre (1914-1919)."}, {"titre": "Ernest Simonnet, 16e régiment de Dragons", "texte": "Ernest Simonnet est appelé à l'activité le 16 novembre 1895 et rejoint le 16e régiment de Dragons comme dragon de 2e classe, casque à chenille et tunique sombre de la cavalerie française. Passé plus tard de la cavalerie à l'artillerie au fil des mutations de la réserve, il accomplit quatre années au Train des équipages durant la Grande Guerre."}]}, "entre_deux_guerres": {"sections": []}, "ww2": {"sections": [{"titre": "Contexte : la Seconde Guerre mondiale (1939-1945)", "texte": "Le conflit se déclenche le 1er septembre 1939 avec l'invasion de la Pologne. Après la « drôle de guerre », l'Allemagne envahit les Pays-Bas, le Luxembourg, la Belgique et la France le 10 mai 1940. Paris tombe le 14 juin, l'armistice est signé le 22 juin à Rethondes. La France est divisée en zone occupée et zone libre ; le régime de Vichy s'installe pendant que le général de Gaulle appelle à la résistance depuis Londres. La Résistance intérieure se structure en réseaux et maquis, fusionnés en février 1944 dans les Forces françaises de l'intérieur. La libération commence le 6 juin 1944 en Normandie, Paris est libéré le 25 août, et la capitulation allemande est signée le 8 mai 1945. La France termine le conflit avec un bilan d'environ 550 000 à 600 000 morts."}, {"titre": "Jean Hirat rappelé au front (1940)", "texte": "La déclaration de guerre de septembre 1939 ne concerne pas immédiatement Jean Hirat, sa classe d'âge n'étant en principe plus mobilisable en unité combattante. Mais le 27 mars 1940, en pleine « drôle de guerre », Jean Hirat, alors âgé de quarante-deux ans, est rappelé à l'activité et affecté au Dépôt de Cavalerie n°29."}, {"titre": "Jean Journoud à Douala (Cameroun)", "texte": "Jean Journoud se trouve à Douala lorsque débute la Seconde Guerre mondiale en septembre 1939. Après l'armistice de juin 1940 et l'appel du général de Gaulle depuis Londres le 18 juin, le Cameroun, comme le reste de l'Afrique équatoriale française, va se rallier à la France Libre."}, {"titre": "Louis-Gabriel Droux et Henriette Lucienne Goy à Brazzaville", "texte": "Louis-Gabriel Droux et son épouse Henriette Lucienne Goy vivent à Brazzaville, capitale de l'Afrique équatoriale française et bientôt « capitale de la France Libre », les journées d'août 1940 puis les deux années qui suivent. Lui, fonctionnaire colonial devenu acteur puis chroniqueur du ralliement de l'AEF au général de Gaulle ; elle, connue sous son nom d'épouse Lucienne Droux, y joue également un rôle actif."}, {"titre": "Marie-Lucie Magot, réseau Vélite-Thermopyles", "texte": "Marie-Lucie Magot naît le 2 juin 1893 à Parnac (Indre). Le 9 février 1914, elle épouse Alfred Marc Dagault. Elle s'engagera par la suite dans le réseau de résistance Vélite-Thermopyles."}, {"titre": "André Rouer, tombé à Argenton-sur-Creuse (9 juin 1944)", "texte": "André Rouer, né le 30 juillet 1909 au Pêchereau (Indre), résistant des Forces françaises de l'intérieur (FFI), se trouve à Argenton-sur-Creuse le 9 juin 1944 lorsque la ville bascule dans l'horreur."}, {"titre": "Marie Gaudy, de passage à Oradour-sur-Glane", "texte": "Marie Gaudy, née le 12 août 1896 à Cieux (Haute-Vienne), mère de deux fillettes, se trouve seulement de passage à Oradour-sur-Glane le 10 juin 1944 ; son foyer se situe à Bellevue, commune de Javerdat, toute proche. Elle est du nombre des femmes rassemblées puis brûlées dans l'église du village. Son mari et ses filles, restés à Javerdat, échappent au massacre."}, {"titre": "Les familles Vergnaud et Senon dans le massacre", "texte": "Le samedi 10 juin 1944, vers 14 heures, une compagnie du régiment SS Der Führer encercle Oradour-sur-Glane. Les hommes sont répartis dans six granges, les femmes et les enfants conduits dans l'église ; 643 personnes trouvent la mort ce jour-là. Du côté Vergnaud, Françoise Lassechère et quatre de ses six enfants périssent, ainsi que leurs petits-enfants. Du côté Senon, Marguerite Rouffanche perd ses fils Martial et Jean, sa belle-fille et sa fille Anne, mariée à Jean Vergnaud : les deux familles, unies par un double mariage croisé, sont massacrées ensemble. Treize membres de ces deux familles seront reconnus « Mort pour la France »."}, {"titre": "Armand Martial Senon, le témoin", "texte": "Fils de Jean Senon et de Marie Vergnaud, Armand Martial Senon est né le 6 mars 1915 à Oradour-sur-Glane. Une semaine avant le 10 juin 1944, il se blesse en jouant au football ; sa jambe immobilisée dans le plâtre le retient chez lui, ce qui, paradoxalement, va le sauver."}, {"titre": "Roseline Authier à Peyrat-de-Bellac", "texte": "Roseline Authier naît le 13 décembre 1942 à Peyrat-de-Bellac, dans le nord de la Haute-Vienne. Le souvenir familial retient qu'un soldat SS lui aurait touché la joue, alors qu'elle n'était qu'un nourrisson, un ou deux jours après le massacre d'Oradour-sur-Glane."}]}, "contemporaine": {"sections": []}};
+
+  const timelineEl = document.getElementById('timeline');
+  const panelTitle = document.getElementById('panel-title');
+  const panelBody = document.getElementById('panel-body');
+
+  function renderSections(sections) {
+    if (!sections || sections.length === 0) {
+      return '<p class="placeholder">Aucun chapitre rédigé pour cette période pour l\'instant.</p>';
+    }
+    return sections.map(s =>
+      '<div class="sec-block">' +
+      '<h3 class="sec-title">' + s.titre + '</h3>' +
+      (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '') +
+      '<p class="sec-text">' + s.texte + '</p>' +
+      '</div>'
+    ).join('');
+  }
+
+  function showPeriod(id) {
+    document.querySelectorAll('.period.selected').forEach(p => p.classList.remove('selected'));
+    const el = document.getElementById('p-' + id);
+    if (el) el.classList.add('selected');
+
+    const period = periods.find(p => p.id === id);
+    const info = content[id];
+
+    panelTitle.textContent = period.label;
+    panelBody.innerHTML =
+      '<p class="range">' + period.range + '</p>' +
+      renderSections(info ? info.sections : []);
+  }
+
+  periods.forEach(p => {
+    const hasContent = content[p.id] && content[p.id].sections && content[p.id].sections.length > 0;
+    const div = document.createElement('div');
+    div.className = 'period' + (hasContent ? ' has-content' : '');
+    div.id = 'p-' + p.id;
+    div.innerHTML = '<span class="period-label">' + p.label + '</span><span class="period-range">' + p.range + '</span>';
+    div.addEventListener('click', () => showPeriod(p.id));
+    timelineEl.appendChild(div);
+  });
+</script>
+
+</body>
+</html>
