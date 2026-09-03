@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La famille aujourd'hui</title>
+<style>
+  :root {
+    --paper: #e9ddc0;
+    --paper-dark: #ddcda3;
+    --ink: #2b2015;
+    --ink-soft: #5a4c38;
+    --seal: #6b1f2b;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.06), transparent 55%);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .page { max-width: 640px; width: 100%; }
+
+  /* --- Gate --- */
+  #gate {
+    background: var(--paper-dark);
+    border: 1px solid var(--ink-soft);
+    padding: 40px 36px;
+    text-align: center;
+  }
+
+  #gate .kicker {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+
+  #gate h1 {
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin: 0 0 18px;
+  }
+
+  #gate p.hint {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+
+  #passwordForm {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #passwordInput {
+    font-family: Georgia, serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 10px 14px;
+    border: 1px solid var(--ink-soft);
+    background: var(--paper);
+    color: var(--ink);
+    width: 160px;
+  }
+
+  #passwordForm button {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    padding: 10px 22px;
+    background: var(--seal);
+    color: #f1e6d8;
+    border: none;
+    cursor: pointer;
+  }
+  #passwordForm button:hover { filter: brightness(1.1); }
+
+  #errorMsg {
+    color: var(--seal);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 14px;
+    min-height: 1.2em;
+  }
+
+  /* --- Content (revealed after unlock) --- */
+  #content {
+    display: none;
+    background: var(--paper-dark);
+    border: 1px solid var(--ink-soft);
+    padding: 34px 38px;
+  }
+
+  #content .kicker {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+
+  #content h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 0 0 16px;
+    border-bottom: 2px double var(--ink-soft);
+    padding-bottom: 12px;
+  }
+
+  #content .body-text {
+    line-height: 1.7;
+    font-size: 1.02rem;
+  }
+
+  #content .placeholder {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div id="gate">
+    <p class="kicker">Chronique familiale</p>
+    <h1>La famille aujourd'hui</h1>
+    <p class="hint">Cette page est réservée à la famille. Entrez le mot de passe pour y accéder.</p>
+    <form id="passwordForm">
+      <input type="password" id="passwordInput" placeholder="••••" inputmode="numeric" autocomplete="off">
+      <button type="submit">Entrer</button>
+    </form>
+    <p id="errorMsg"></p>
+  </div>
+
+  <div id="content">
+    <p class="kicker">Chronique familiale</p>
+    <h1>La famille aujourd'hui</h1>
+    <div class="body-text">
+      <p class="placeholder">Contenu à venir — cette page attend son texte. Remplace ce paragraphe par ce que tu veux montrer ici (photos, nouvelles de chacun, arbre actuel...).</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const CORRECT_PASSWORD = "6387";
+
+  const gate = document.getElementById('gate');
+  const content = document.getElementById('content');
+  const form = document.getElementById('passwordForm');
+  const input = document.getElementById('passwordInput');
+  const errorMsg = document.getElementById('errorMsg');
+
+  function unlock() {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+  }
+
+  // Stay unlocked for the rest of this browser session only
+  if (sessionStorage.getItem('famille_unlocked') === 'yes') {
+    unlock();
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value.trim() === CORRECT_PASSWORD) {
+      sessionStorage.setItem('famille_unlocked', 'yes');
+      unlock();
+    } else {
+      errorMsg.textContent = "Mot de passe incorrect.";
+      input.value = '';
+      input.focus();
+    }
+  });
+</script>
+
+</body>
+</html>
