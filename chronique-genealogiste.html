@@ -13,9 +13,9 @@
     --ink-soft: #5a4c38;
     --seal: #6b1f2b;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   body {
     margin: 0;
     background: var(--paper);
@@ -26,29 +26,29 @@
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     padding: 24px 20px 60px;
   }
-
+ 
   .page { max-width: 1200px; margin: 0 auto; }
-
+ 
   header.masthead {
     border-bottom: 3px double var(--ink-soft);
     padding-bottom: 14px;
     margin-bottom: 26px;
   }
-
+ 
   header.masthead .kicker {
     font-style: italic;
     font-size: 0.92rem;
     color: var(--ink-soft);
     margin: 0 0 4px;
   }
-
+ 
   header.masthead h1 {
     font-size: clamp(1.7rem, 3.4vw, 2.5rem);
     margin: 0 0 8px;
     font-weight: 400;
     letter-spacing: 0.01em;
   }
-
+ 
   header.masthead p.lede {
     max-width: 78ch;
     color: var(--ink-soft);
@@ -56,13 +56,13 @@
     line-height: 1.55;
     margin: 0;
   }
-
+ 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 16px;
   }
-
+ 
   .card {
     background: var(--card);
     border: 1px solid var(--ink-soft);
@@ -75,7 +75,7 @@
     outline: 2px solid var(--seal);
     outline-offset: -2px;
   }
-
+ 
   .card .tag {
     display: inline-block;
     font-size: 0.72rem;
@@ -84,21 +84,21 @@
     border-bottom: 1px solid rgba(107,31,43,0.4);
     margin-bottom: 8px;
   }
-
+ 
   .card h3 {
     font-size: 1.08rem;
     font-weight: 400;
     margin: 0 0 8px;
     line-height: 1.3;
   }
-
+ 
   .card .teaser {
     font-size: 0.88rem;
     color: var(--ink-soft);
     line-height: 1.5;
     margin: 0;
   }
-
+ 
   .panel {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
@@ -106,7 +106,7 @@
     margin-top: 28px;
     min-height: 140px;
   }
-
+ 
   .panel h2 {
     font-size: 1.5rem;
     font-weight: 400;
@@ -114,20 +114,20 @@
     border-bottom: 1px solid rgba(43,32,21,0.3);
     padding-bottom: 12px;
   }
-
+ 
   .panel .tag-line {
     font-style: italic;
     color: var(--seal);
     margin: 10px 0 6px;
     font-size: 0.95rem;
   }
-
+ 
   .panel .placeholder {
     color: var(--ink-soft);
     font-style: italic;
     line-height: 1.6;
   }
-
+ 
   .sec-title {
     font-size: 1.1rem;
     font-weight: 400;
@@ -138,27 +138,67 @@
     border-top: 1px dashed rgba(43,32,21,0.25);
   }
   .sec-block:first-of-type .sec-title { margin-top: 16px; }
-
+ 
   .sec-img {
     display: block;
     width: 100%;
-    max-width: 460px;
+    max-width: 600px;
     height: auto;
-    margin: 4px 0 10px;
+    margin: 10px auto 4px;
     border: 1px solid var(--ink-soft);
     padding: 4px;
     background: var(--paper);
   }
-
+ 
+  .sec-img-caption {
+    text-align: center;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+ 
+  .sec-link {
+    display: block;
+    margin: 4px 0 14px;
+    font-size: 0.98rem;
+  }
+  .sec-link a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 1px;
+  }
+  .sec-link a:hover { color: var(--seal); }
+  .sec-link .icon { margin-right: 6px; }
+ 
+  .sec-video {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto 4px;
+    overflow: hidden;
+    border: 1px solid var(--ink-soft);
+    background: #000;
+  }
+  .sec-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+ 
   .sec-text {
     line-height: 1.7;
     color: var(--ink);
-    margin: 0 0 4px;
+    margin: 0 auto 12px;
     font-size: 1rem;
     max-width: 82ch;
     text-align: justify;
   }
-
+ 
   footer.note {
     max-width: 84ch;
     margin: 30px auto 0;
@@ -173,64 +213,99 @@
 </head>
 <body>
 <div class="page">
-
+ 
   <header class="masthead">
     <p class="kicker">Chronique familiale — section Chronique du généalogiste</p>
     <h1>Chronique du généalogiste</h1>
-    <p class="lede">Des articles au fil des découvertes, des méthodes et des impasses de la recherche généalogique. Touchez une carte pour lire son détail ci-dessous. Trois articles de démonstration pour l'instant, prêts à être remplis.</p>
+    <p class="lede">Des articles au fil des découvertes, des méthodes et des impasses de la recherche généalogique. Touchez une carte pour lire son détail ci-dessous.</p>
   </header>
-
+ 
   <div class="grid" id="grid"></div>
-
+ 
   <div class="panel" id="panel">
     <h2 id="panel-title">Choisissez un article</h2>
     <p class="placeholder" id="panel-body">Touchez une carte ci-dessus pour afficher son détail ici.</p>
   </div>
-
+ 
   <footer class="note">
     Pour ajouter un article, complétez le tableau <code>articles</code> dans le <code>&lt;script&gt;</code> avec un nouvel objet <code>{ id, titre, tag, teaser, sections }</code> — la grille et le panneau de détail s'adaptent automatiquement. Chaque section suit le même principe que celui utilisé pour la Haute-Vienne : un sous-titre (<code>titre</code>), un texte (<code>texte</code>), et une image optionnelle (<code>image</code>).
   </footer>
-
+ 
 </div>
-
+ 
 <script>
-  const articles = [{"id": "article-1", "titre": "Article 1", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
-                    {"id": "article-2", "titre": "Article 2", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
-                    {"id": "article-3", "titre": "Article 3", "tag": "À paraître", "teaser": "À compléter.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}];
-
+  const articles = [{"id": "pere-fernand-hirat", "titre": "Qui est le père de Fernand Hirat ?", "tag": "14 mars 2020", "teaser": "Une impasse généalogique et la méthode suivie pour tenter de la résoudre.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "traces-oradour", "titre": "Sur les traces d'Oradour-sur-Glane", "tag": "1er août 2026", "teaser": "Un carnet de visite sur les lieux mêmes du massacre du 10 juin 1944.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "prisonniers-croix-rouge", "titre": "Les prisonniers de guerre vus par la Croix-Rouge", "tag": "22 septembre 2021", "teaser": "Ce que les archives de la Croix-Rouge internationale révèlent sur les ancêtres captifs.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "films-bataille-de-gaulle", "titre": "Les deux films « Bataille de Gaulle »", "tag": "9 juillet 2026", "teaser": "Deux films, une même bataille : comparer les sources audiovisuelles disponibles.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "base-macons-migrants-creuse", "titre": "La base de données des maçons migrants de la Creuse", "tag": "18 juillet 2026", "teaser": "Un outil précieux pour retracer les campagnes de migration saisonnière des Mammet.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "puy-du-fou-base-vendee", "titre": "Le Puy du Fou et la base de données des victimes de la guerre de Vendée", "tag": "31 août 2026", "teaser": "Une ressource pour croiser le destin de Jean Dugas avec l'ensemble des victimes recensées.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "traces-eugenie-reynaud-paris", "titre": "Sur les traces d'Eugénie Reynaud à Paris", "tag": "23 août 2026", "teaser": "Retrouver le passage parisien d'une branche que l'on croyait rester en Limousin.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "nomenclature-genealogie", "titre": "La nomenclature en généalogie", "tag": "8 juillet 2019", "teaser": "Créer une nomenclature claire des individus de l'arbre généalogique.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}, 
+                    {"id": "maurice-rouer-mystere-parente", "titre": "Maurice Rouer et le mystère de la parenté", "tag": "5 août 2026", "teaser": "Une filiation qui ne colle pas tout à fait : l'enquête pour trancher.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}];
+ 
   const gridEl = document.getElementById('grid');
   const panelTitle = document.getElementById('panel-title');
   const panelBody = document.getElementById('panel-body');
-
+ 
+  function renderBlocks(blocks) {
+    if (!blocks || blocks.length === 0) {
+      return '<p class="sec-text placeholder">À compléter.</p>';
+    }
+    return blocks.map(b => {
+      if (b.type === 'image') {
+        const styleAttr = b.width ? ' style="max-width:' + b.width + '"' : '';
+        const caption = b.legende ? '<p class="sec-img-caption">' + b.legende + '</p>' : '';
+        return '<img class="sec-img" src="' + b.src + '"' + styleAttr + ' alt="">' + caption;
+      }
+      if (b.type === 'lien') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">↗</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'pdf') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">📄</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'video') {
+        const caption = b.titre ? '<p class="sec-img-caption">' + b.titre + '</p>' : '';
+        return '<div class="sec-video"><iframe src="' + b.src + '" allowfullscreen loading="lazy"></iframe></div>' + caption;
+      }
+      return '<p class="sec-text">' + b.texte + '</p>';
+    }).join('');
+  }
+ 
   function renderSections(sections) {
     if (!sections || sections.length === 0) {
       return '<p class="placeholder">Aucun contenu rédigé pour l\'instant.</p>';
     }
-    return sections.map(s =>
-      '<div class="sec-block">' +
-      '<h3 class="sec-title">' + s.titre + '</h3>' +
-      (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '') +
-      '<p class="sec-text">' + s.texte + '</p>' +
-      '</div>'
-    ).join('');
+    return sections.map(s => {
+      let inner = '<h3 class="sec-title">' + s.titre + '</h3>';
+      if (s.blocks) {
+        inner += renderBlocks(s.blocks);
+      } else {
+        inner += (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '');
+        inner += '<p class="sec-text">' + s.texte + '</p>';
+      }
+      return '<div class="sec-block">' + inner + '</div>';
+    }).join('');
   }
-
+ 
   function showArticle(id) {
     document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
     const cardEl = document.getElementById('card-' + id);
     if (cardEl) cardEl.classList.add('selected');
-
+ 
     const a = articles.find(x => x.id === id);
     if (!a) return;
-
+ 
     panelTitle.textContent = a.titre;
     panelBody.innerHTML =
       '<p class="tag-line">' + a.tag + '</p>' +
       renderSections(a.sections);
-
+ 
     document.getElementById('panel').scrollIntoView({block: 'nearest', behavior: 'smooth'});
   }
-
+ 
   articles.forEach(a => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -243,6 +318,6 @@
     gridEl.appendChild(card);
   });
 </script>
-
+ 
 </body>
 </html>
