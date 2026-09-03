@@ -90,12 +90,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
+    color: inherit;
   }
 
   .card .arrow-top,
   .card .arrow-bottom {
     color: var(--plum);
-    text-decoration: none;
     font-size: 0.95rem;
   }
 
@@ -136,6 +137,7 @@
     flex-grow: 1;
   }
 
+  .card.disabled { color: inherit; cursor: default; }
   .card.disabled h2,
   .card.disabled .icon-row::before,
   .card.disabled .icon-row::after { opacity: 0.5; }
@@ -161,68 +163,68 @@
 
   <div class="grid">
 
-    <a class="card" href="famille-france.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="famille-france.html">↗</a>
+    <a class="card" href="famille-france.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon fr-flag">FR</span></div>
       <h2>LA FAMILLE<br>EN FRANCE</h2>
       <p>Carte interactive des départements et communes où nos ancêtres ont vécu.</p>
-      <a class="arrow-bottom" href="famille-france.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="famille-monde.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="famille-monde.html">↗</a>
+    <a class="card" href="famille-monde.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">🌍</span></div>
       <h2>LA FAMILLE<br>DANS LE MONDE</h2>
       <p>Carte interactive des pays où nos ancêtres sont nés, ont vécu ou voyagé.</p>
-      <a class="arrow-bottom" href="famille-monde.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="famille-histoire.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="famille-histoire.html">↗</a>
+    <a class="card" href="famille-histoire.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">⏳</span></div>
       <h2>LA FAMILLE<br>DANS L'HISTOIRE</h2>
       <p>Une frise chronologique interactive pour replacer nos ancêtres dans leur époque.</p>
-      <a class="arrow-bottom" href="famille-histoire.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="metiers.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="metiers.html">↗</a>
+    <a class="card" href="metiers.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">🛠️</span></div>
       <h2>LES MÉTIERS</h2>
       <p>De la terre aux bureaux, découvrez les métiers exercés par nos ancêtres.</p>
-      <a class="arrow-bottom" href="metiers.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="portraits.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="portraits.html">↗</a>
+    <a class="card" href="portraits.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">👤</span></div>
       <h2>PORTRAITS<br>&amp; HISTOIRES</h2>
       <p>Biographies, anecdotes et destins singuliers de certains ancêtres.</p>
-      <a class="arrow-bottom" href="portraits.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="cousinages.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="cousinages.html">↗</a>
+    <a class="card" href="cousinages.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">🧬</span></div>
       <h2>LES COUSINAGES</h2>
       <p>Les personnalités célèbres ou remarquables auxquelles la famille se rattache.</p>
-      <a class="arrow-bottom" href="cousinages.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="chronique-genealogiste.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="chronique-genealogiste.html">↗</a>
+    <a class="card" href="chronique-genealogiste.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">🔍</span></div>
       <h2>CHRONIQUE<br>DU GÉNÉALOGISTE</h2>
       <p>Les coulisses de la recherche : découvertes, archives, méthodes, voyages et énigmes.</p>
-      <a class="arrow-bottom" href="chronique-genealogiste.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
-    <a class="card" href="famille-aujourdhui.html" style="text-decoration:none; color:inherit;">
-      <a class="arrow-top" href="famille-aujourdhui.html">↗</a>
+    <a class="card" href="famille-aujourdhui.html">
+      <span class="arrow-top">↗</span>
       <div class="icon-row"><span class="icon">👨‍👩‍👧</span></div>
       <h2>LA FAMILLE<br>AUJOURD'HUI</h2>
       <p>La continuité de l'histoire familiale jusqu'à nos jours.</p>
-      <a class="arrow-bottom" href="famille-aujourdhui.html">↗</a>
+      <span class="arrow-bottom">↗</span>
     </a>
 
     <div class="card disabled">
