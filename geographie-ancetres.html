@@ -15,9 +15,9 @@
     --dept-empty-line: #ab9c72;
     --dept-hover: #b7a877;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   body {
     margin: 0;
     background: var(--paper);
@@ -28,29 +28,29 @@
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     padding: 24px 20px 60px;
   }
-
+ 
   .page { max-width: 1400px; margin: 0 auto; }
-
+ 
   header.masthead {
     border-bottom: 3px double var(--ink-soft);
     padding-bottom: 14px;
     margin-bottom: 22px;
   }
-
+ 
   header.masthead .kicker {
     font-style: italic;
     font-size: 0.92rem;
     color: var(--ink-soft);
     margin: 0 0 4px;
   }
-
+ 
   header.masthead h1 {
     font-size: clamp(1.7rem, 3.4vw, 2.5rem);
     margin: 0 0 8px;
     font-weight: 400;
     letter-spacing: 0.01em;
   }
-
+ 
   header.masthead p.lede {
     max-width: 78ch;
     color: var(--ink-soft);
@@ -58,7 +58,7 @@
     line-height: 1.55;
     margin: 0;
   }
-
+ 
   .map-frame {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
@@ -66,7 +66,7 @@
     position: relative;
     width: 100%;
   }
-
+ 
   .map-frame::before {
     content: "";
     position: absolute;
@@ -74,9 +74,9 @@
     border: 1px solid rgba(43,32,21,0.35);
     pointer-events: none;
   }
-
+ 
   svg { width: 100%; height: auto; display: block; max-height: 78vh; margin: 0 auto; }
-
+ 
   path.dept {
     fill: var(--dept-empty);
     stroke: var(--dept-empty-line);
@@ -84,21 +84,21 @@
     cursor: default;
     transition: fill 0.15s ease;
   }
-
+ 
   path.dept.has-family {
     cursor: pointer;
     stroke: rgba(43,32,21,0.55);
     stroke-width: 0.8;
   }
-
+ 
   path.dept.has-family:hover { filter: brightness(1.12); }
   path.dept:not(.has-family):hover { fill: var(--dept-hover); }
-
+ 
   path.dept.selected {
     stroke: var(--seal);
     stroke-width: 1.6;
   }
-
+ 
   .map-caption {
     margin-top: 10px;
     font-size: 0.85rem;
@@ -106,7 +106,7 @@
     font-style: italic;
     text-align: center;
   }
-
+ 
   .below {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.8fr);
@@ -114,16 +114,16 @@
     margin-top: 26px;
     align-items: start;
   }
-
+ 
   @media (max-width: 760px) { .below { grid-template-columns: 1fr; } }
-
+ 
   .panel {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
     padding: 22px 26px;
     min-height: 160px;
   }
-
+ 
   .panel h2 {
     font-size: 1.35rem;
     font-weight: 400;
@@ -131,17 +131,46 @@
     border-bottom: 1px solid rgba(43,32,21,0.3);
     padding-bottom: 10px;
   }
-
-  .panel .branche { font-style: italic; color: var(--seal); margin: 12px 0 14px; font-size: 1.05rem; }
+ 
+  .panel .branche { font-style: italic; color: var(--seal); margin: 12px 0 18px; font-size: 1.05rem; }
   .panel .villages { line-height: 1.65; color: var(--ink); margin: 0; font-size: 1rem; }
   .panel .placeholder { color: var(--ink-soft); font-style: italic; line-height: 1.6; }
-
+ 
+  .sec-title {
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--seal);
+    margin: 20px 0 8px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(43,32,21,0.25);
+  }
+  .sec-block:first-of-type .sec-title { margin-top: 0; padding-top: 0; border-top: none; }
+ 
+  .sec-img {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    margin: 4px 0 10px;
+    border: 1px solid var(--ink-soft);
+    padding: 4px;
+    background: var(--paper);
+  }
+ 
+  .sec-text {
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 12px;
+    font-size: 1rem;
+  }
+ 
   .legend {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
     padding: 20px 22px;
   }
-
+ 
   .legend h3 {
     font-size: 0.85rem; font-weight: 400; font-style: italic;
     color: var(--ink-soft); margin: 0 0 12px;
@@ -151,7 +180,7 @@
   .legend ul { list-style: none; margin: 0; padding: 0; max-height: 420px; overflow-y: auto; }
   .legend li { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; margin-bottom: 8px; cursor: pointer; line-height: 1.3; }
   .legend .swatch { width: 12px; height: 12px; flex: none; border: 1px solid rgba(43,32,21,0.4); }
-
+ 
   footer.note {
     max-width: 84ch;
     margin: 30px auto 0;
@@ -166,13 +195,13 @@
 </head>
 <body>
 <div class="page">
-
+ 
   <header class="masthead">
     <p class="kicker">Chronique familiale — section Géographie</p>
     <h1>La France de nos ancêtres, département par département</h1>
-    <p class="lede">Chaque teinte marque un département documenté dans la Chronique. Les couleurs regroupent les départements par grand territoire (Marche/Berry, Auvergne, arc Rhône-Alpes/Bourgogne/Franche-Comté, Ouest, Île-de-France...). Touchez ou survolez un département pour lire son détail ci-dessous.</p>
+    <p class="lede">Chaque teinte marque un département documenté dans la Chronique, regroupé par grand territoire. Touchez ou survolez un département pour lire son détail ci-dessous. L'Ain montre le nouveau format à sous-titres, paragraphes et images multiples.</p>
   </header>
-
+ 
   <div class="map-frame">
     <svg viewBox="0 0 780 780" xmlns="http://www.w3.org/2000/svg" id="franceMap">
       <path class="dept has-family" id="d01" d="M 522.9,377.0 L 531.2,351.4 L 531.7,352.8 L 533.4,351.7 L 537.2,354.0 L 541.2,352.2 L 542.8,352.6 L 542.9,351.4 L 544.7,352.2 L 545.4,355.2 L 550.5,356.9 L 551.0,358.2 L 549.7,359.4 L 553.8,361.6 L 553.0,362.6 L 555.0,364.8 L 555.2,367.0 L 556.2,364.2 L 556.9,366.6 L 558.4,366.1 L 557.9,369.7 L 558.7,370.5 L 562.1,370.1 L 563.5,368.3 L 564.9,368.2 L 567.5,364.4 L 567.6,365.9 L 571.2,367.1 L 571.7,370.7 L 579.2,370.4 L 589.1,359.0 L 594.8,362.8 L 591.2,368.9 L 592.0,371.9 L 589.2,371.8 L 584.6,374.1 L 584.1,375.5 L 585.7,376.5 L 584.2,380.0 L 580.5,381.3 L 580.1,383.8 L 576.6,382.5 L 575.9,389.1 L 577.4,393.9 L 574.8,403.9 L 574.8,409.3 L 573.3,412.1 L 570.5,411.9 L 570.9,413.6 L 569.8,416.9 L 568.0,417.3 L 566.8,419.3 L 564.6,415.1 L 562.8,414.7 L 562.5,412.8 L 563.6,413.8 L 563.9,413.0 L 561.4,411.4 L 556.1,404.6 L 556.8,403.0 L 555.6,401.2 L 552.5,398.9 L 549.9,401.6 L 548.2,405.8 L 545.8,407.5 L 540.7,404.3 L 539.9,405.3 L 539.6,404.1 L 530.0,404.6 L 529.5,399.6 L 527.6,397.4 L 526.4,396.7 L 524.2,397.9 L 524.4,396.2 L 520.2,394.4 L 521.6,392.3 L 520.8,386.7 L 521.9,385.1 L 521.2,383.6 L 524.0,378.8 L 522.9,377.0 Z" data-code="01" data-name="Ain"></path>
@@ -274,61 +303,91 @@
     </svg>
   </div>
   <p class="map-caption">Carte des départements de la France métropolitaine. Les branches installées à l'étranger figurent sur la carte du monde, dans une page séparée.</p>
-
+ 
   <div class="below">
     <aside class="panel" id="panel">
       <h2 id="panel-title">Choisissez un département</h2>
-      <p class="placeholder" id="panel-body">23 départements sont déjà documentés dans la Chronique. Touchez-en un sur la carte ci-dessus pour afficher son détail ici.</p>
+      <p class="placeholder" id="panel-body">23 départements sont déjà documentés dans la Chronique. Essayez l'Ain pour voir le nouveau format à sections et images multiples.</p>
     </aside>
-
+ 
     <div class="legend">
       <h3>Départements documentés</h3>
       <ul id="legend-list"></ul>
     </div>
   </div>
-
+ 
   <footer class="note">
-    Prototype de mise en page — les liens « Voir la page » pointent pour l'instant vers des ancres factices. Une fois les pages de branche créées dans la chronique Geneanet (syntaxe <code>[[[nom_de_page/Texte]]]</code>), il suffira de remplacer l'attribut <code>href</code> correspondant dans le code par l'adresse réelle de la page. Pour ajouter ou corriger un département, modifiez l'objet <code>family</code> dans le <code>&lt;script&gt;</code>.
+    Chaque département peut être écrit de trois façons dans l'objet <code>family</code> du <code>&lt;script&gt;</code> : un texte simple (clé <code>villages</code>), une liste de sections à sous-titre + texte + image unique (clé <code>sections</code> avec <code>texte</code>/<code>image</code>), ou — comme l'Ain — des sections à <code>blocks</code> : une suite de paragraphes et d'images dans l'ordre exact où ils doivent apparaître, ce qui permet d'intercaler plusieurs photos au fil du texte.
   </footer>
-
+ 
 </div>
-
+ 
 <script>
-  const family = {"01": {"branche": "Chonte & Desflaches & Journoud — Ain", "villages": "Le département de l’Ain est représenté par la lignée de Thérèse CHONTE dans le village de Montluel. Marie-Antoinette DESFLACHES, veuve de Antonin JOURNOUD achète en 1948 le château des Guérets dans le village de Jujurieux.", "couleur": "#3a5a8c"}, "07": {"branche": "Journoud — Ardèche", "villages": "La famille JOURNOUD vient s’installer à Le Teil en Ardèche en 1874.", "couleur": "#3a5a8c"}, "15": {"branche": "Chanut — Cantal", "villages": "Le département du Cantal est représenté par la lignée d’Elisabeth CHANUT dans les villages de Saint-Paul-de-Salers et de Fontanges.", "couleur": "#7a6b3a"}, "21": {"branche": "Laurent & Droux & Goy — Côte d’Or", "villages": "Le département de la Côte-d’Or est représenté par la lignée de Héloïse LAURENT dans les villages de Tillenay, Longchamp et de Tart-l’Abbaye. Louis-Gabriel DROUX et Henriette Lucienne GOY ont vécu à Dijon, ainsi que Pierre Georges DROUX et Philomène ISSERT.", "couleur": "#3a5a8c"}, "23": {"branche": "Simonnet & Mammet — Creuse", "villages": "La Creuse est sans doute le département le plus représenté dans mon arbre, en effet presque 3/8e de mes ancêtres sont originaires de ce département. Si l'on se fie maintenant au territoire et non aux départements. On se rend compte que les branches de Haute-Vienne, Creuse et Indre sont toutes proches les unes des autres. Ainsi on peut admettre que la moitié des individus trouvés dans cet arbre généalogique est originaire de ce territoire entre la Creuse, l'Indre et la Haute-Vienne. Les habitants de ce territoire étaient en grande majorité liés à la terre. En effet ils travaillaient tous comme cultivateur, laboureur ou vigneron mais également quelques meuniers et journaliers. Les villages les plus présents dans cet arbre sont divisés en deux groupes: Le Grand-Bourg, Montaigut-le-Blanc, Saint-Etienne-de-Fursac, Marsac et Mourioux-Vieilleville d’un côté, et Saint-Sébastien, Crozant et Azerables de l’autre. Les lignées d’Alice SIMONNET et de Georgette MAMMET sont originaires de la Creuse.", "couleur": "#8a5a3c"}, "36": {"branche": "Rouer & Feuillepain — Indre", "villages": "L' Indre est un département représenté dans cet arbre par la lignée de Louis René ROUER, même si quelques individus de son ascendance sont originaires de la Creuse (vers Saint-Sébastien). Plus précisément son ascendance vient du Sud du département de l'Indre, au niveau des villages d' Argenton-sur-Creuse, Le Pêchereau, Le Menoux, Chaillac, Eguzon-Chantôme ou Saint-Marcel. Cette branche de l'arbre généalogique s'est rattachée à une branche de la Creuse vers le début du XXe siècle. La suite de la descendance est restée en Creuse (jusqu'aux dernières décennies avec de plus en plus de déplacements). Dans cette région, les individus étaient principalement des cultivateurs, des vignerons mais aussi quelques rares meuniers. Tous les villages cités précédemment appartiennent à la région naturelle de Boischaut Sud, territoire majoritairement constitué d'étangs et de mares situés dans le Sud de l'ancienne région du Berry. On trouve dans ce territoire de nombreux agriculteurs, éleveurs mais également vignerons, comme beaucoup de nos ancêtres. La lignée de Maurice Charles FEUILLEPAIN est également originaire de l’Indre, plus précisément des villages de Saint-Août, Tranzault, Montipouret, Saint-Chartier, Verneuil-sur-Igneraie et Montlevicq, au Sud-Est du département.", "couleur": "#8a5a3c"}, "39": {"branche": "Goy — Jura", "villages": "Le département du Jura est représenté par la lignée de Marie-Laurent GOY dans les villages de Gigny, et de Bourcia.", "couleur": "#3a5a8c"}, "42": {"branche": "Journoud — Loire", "villages": "Le département de la Loire est représenté par la lignée d’Antonin JOURNOUD, dans les villages de Rive-de-Gier, Saint-Martin-la-Plaine, Lorette, La Cula et Saint-Genis-Terrenoire.", "couleur": "#3a5a8c"}, "43": {"branche": "Vigier — Haute-Loire", "villages": "Le département de la Haute-Loire est lié à celui de la Loire dans notre arbre généalogique, il est représenté par la lignée de Marie Pauline VIGIER, dans les villages de Retournac et Yssingeaux.", "couleur": "#7a6b3a"}, "44": {"branche": "Rialland — Loire-Atlantique", "villages": "La Loire-Atlantique fait partie des départements les plus représentés de cet arbre généalogique, les individus originaires de ce département n'ont aucun lien familial avec les branches de la Creuse ou de l'Indre. La branche la plus développée dans cet arbre est celle d’Amédée Jean Baptiste RIALLAND, qui étaient majoritairement des meuniers de père en fils. Les villes les plus présentes sont Pontchâteau, Crossac, Saint-Nazaire ou Campbon. Les différents villages dans lesquels vivaient nos ancêtres proviennent du territoire nommé la Brière, situé juste au Nord de l'estuaire de la Loire. Les habitants de ce territoire sont nommés les Briérons. Ce petit territoire est en fait un marais qui est aujourd'hui un parc régional naturel. Mais déjà, à des époques reculées, le marais était une source d'intérêts pour les populations alentour.", "couleur": "#2f6b5e"}, "63": {"branche": "Puy-de-Dôme — à préciser", "villages": "Villages liés à la famille : Châteauneuf-les-Bains, Bussières.", "couleur": "#7a6b3a"}, "66": {"branche": "Bes — Pyrénées-Orientales", "villages": "Le département des Pyrénées-Orientales est représenté par la lignée de Maurice BES, au niveau des villages de Maureillas-las-Illas, Sorède et de Céret.", "couleur": "#c1440e"}, "69": {"branche": "Violet & Journoud & Fillon — Rhône", "villages": "Le département du Rhône est représenté par la lignée de Joséphine VIOLET dans le Beaujolais, au niveau des villages d’Emeringes, Vauxrenard et Avenas. Une partie de la lignée d’Antonin JOURNOUD dans le département de la Loire, provient du sud du département du Rhône, plus précisément du village de Saint-Didier-sous-Riverie par la lignée de Flory FILLON. Une partie de la famille de Louis-Gabriel DROUX a vécu à Lyon entre 1876 et 1922.", "couleur": "#3a5a8c"}, "70": {"branche": "Laurent — Haute-Saône", "villages": "Le département de la Haute-Saône est représenté par la même lignée que celle du département des Vosges, il s’agit de celle de Joseph LAURENT, au niveau du village de Quers.", "couleur": "#3a5a8c"}, "71": {"branche": "Droux — Saône-et-Loire", "villages": "Le département de la Saône-et-Loire est représenté par la lignée Gabriel Louis DROUX, au niveau des villages de Sennecey-le-Grand, La Chapelle-sous-Brancion et Royer.", "couleur": "#3a5a8c"}, "73": {"branche": "Savoie — à préciser", "villages": "Villages liés à la famille : Le Montcel.", "couleur": "#3a5a8c"}, "74": {"branche": "Haute-Savoie — à préciser", "villages": "Villages liés à la famille : Manigod.", "couleur": "#3a5a8c"}, "75": {"branche": "Paris — à préciser", "villages": "Aucune note rédigée pour l'instant dans la Chronique.", "couleur": "#a3862a"}, "79": {"branche": "Rethore & Guerin — Deux-Sèvres", "villages": "Le département des Deux-Sèvres est représenté par la lignée de Hélène Germaine RETHORE, dans les villages de Moutiers-sous-Argenton, Argenton-l’Eglise, Mauzé-Thouarsais et La Chapelle-Gaudin dans le Nord du département. Depuis la même lignée, la branche de Jeanne GUERIN provient du village de Moncoutant, dans le Sud du département.", "couleur": "#2f6b5e"}, "87": {"branche": "Reynaud & Hirat & Authier — Haute-Vienne", "villages": "Le département de la Haute-Vienne est représenté dans mon arbre généalogique par la lignée de Pauline REYNAUD au niveau des villages de Folles et de Bersac-sur-Rivalier au Nord du département. La lignée de Jean HIRAT, époux de Pauline REYNAUD, provient quant à elle des villages de Saint-Cyr, Cognac-la-Forêt, Saint-Auvent et Saint-Martin-de-Jussac. Mais aussi par la lignée de Roseline AUTHIER au niveau des villages de La Roche-l’Abeille, Château-Chervix et Saint-Priest-Ligoure dans le Sud du département, bien qu’elle soit née à Peyrat-de-Bellac.", "couleur": "#8a5a3c"}, "88": {"branche": "Laurent — Vosges", "villages": "Le département des Vosges est représenté par la lignée de Joseph LAURENT, liée à celle de Héloïse LAURENT, au niveau des villages de Rupt-sur-Moselle, Ramonchamp et La Bresse.", "couleur": "#6b4c8c"}, "92": {"branche": "Hauts-de-Seine — à préciser", "villages": "Villages liés à la famille : Neuilly-sur-Seine.", "couleur": "#a3862a"}, "94": {"branche": "Val-de-Marne — à préciser", "villages": "Villages liés à la famille : Maisons-Alfort.", "couleur": "#a3862a"}};
+  const family = {"01": {"branche": "Chonte & Desflaches & Journoud — Ain", "couleur": "#3a5a8c", "sections": [{"titre": "Vue d'ensemble", "blocks": [{"type": "image", "src": "URL_IMAGE_1.jpg"}, {"type": "texte", "texte": "Le département de l'Ain est représenté par la lignée de Thérèse CHONTE dans le village de Montluel. Marie-Antoinette DESFLACHES, veuve de Antonin JOURNOUD, achète en 1948 le château des Guérets dans le village de Jujurieux."}]}, {"titre": "Montluel", "blocks": []}, {"titre": "Château des Guérets à Jujurieux", "blocks": [{"type": "texte", "texte": "Jujurieux, situé au pied du Bugey, sur les hauteurs qui dominent la Plaine de l'Ain, est désigné comme le village aux 13 châteaux. Quelques-uns sont très anciens et ont un véritable caractère défensif, d'autres ont été construits au cours du XIXe par des membres de la famille Bonnet, ils sont nommés châteaux de l'industrie. C'est en 1835 que Claude-Joseph Bonnet (1786-1867), fabricant de soierie à Lyon depuis 1810, fait construire une usine-pensionnat à Jujurieux dont il est originaire. Véritable cité industrielle, l'usine-pensionnat comprend notamment un internat pour jeunes filles, une chapelle… Autour de 1870, la commune comptait 2700 habitants, la fabrique employait environ 2000 personnes sur site et à domicile. L'activité industrielle des soieries a pris fin au début des années 2000, les locaux accueillent aujourd'hui le musée départemental des soieries Bonnet. Les châteaux de l'industrie bâtis au 19ème siècle sont de grosses demeures entourées de parcs paysagers. Parmi eux, la villa ou château des Guérets, édifié pour Jean-Marie Pointet (1844-1919), associé des Petits-fils de C.J. Bonnet et Cie, marié à Claire Bonnet, petite-fille de Claude-Joseph Bonnet. Les plans ont été établis en 1899 par l'architecte lyonnais Mortamet. Le château offre une belle vue sur Jujurieux et sur la plaine de la rivière d'Ain. Plusieurs châteaux de l'industrie sont devenus au milieu du XXe siècle des centres de colonies de vacances. En 1948, le château des Guérets, dont une partie de l'intérieur a été détruite par un incendie, est à vendre, il est acquis par la famille Journoud pour accueillir des enfants en colonies de vacances."}, {"type": "image", "src": "URL_IMAGE_2.jpg"}, {"type": "texte", "texte": "Le château avec le bâtiment annexe et le grand parc où sont installés des marabouts accueillent chaque été, entre 1950 et 1959, une centaine d'enfants d'ouvriers des usines Boussac à Épinal."}, {"type": "image", "src": "URL_IMAGE_3.jpg"}, {"type": "image", "src": "URL_IMAGE_4.jpg"}, {"type": "image", "src": "URL_IMAGE_5.jpg"}, {"type": "texte", "texte": "C'est aux Guérets à Jujurieux, que Héloïse LAURENT décède en 1949. La famille quitte Jujurieux en 1959 ou 1960."}]}]}, "07": {"branche": "Journoud — Ardèche", "villages": "La famille JOURNOUD vient s’installer à Le Teil en Ardèche en 1874.", "couleur": "#3a5a8c"}, "15": {"branche": "Chanut — Cantal", "villages": "Le département du Cantal est représenté par la lignée d’Elisabeth CHANUT dans les villages de Saint-Paul-de-Salers et de Fontanges.", "couleur": "#7a6b3a"}, "21": {"branche": "Laurent & Droux & Goy — Côte d’Or", "villages": "Le département de la Côte-d’Or est représenté par la lignée de Héloïse LAURENT dans les villages de Tillenay, Longchamp et de Tart-l’Abbaye. Louis-Gabriel DROUX et Henriette Lucienne GOY ont vécu à Dijon, ainsi que Pierre Georges DROUX et Philomène ISSERT.", "couleur": "#3a5a8c"}, "23": {"branche": "Simonnet & Mammet — Creuse", "villages": "La Creuse est sans doute le département le plus représenté dans mon arbre, en effet presque 3/8e de mes ancêtres sont originaires de ce département. Si l'on se fie maintenant au territoire et non aux départements. On se rend compte que les branches de Haute-Vienne, Creuse et Indre sont toutes proches les unes des autres. Ainsi on peut admettre que la moitié des individus trouvés dans cet arbre généalogique est originaire de ce territoire entre la Creuse, l'Indre et la Haute-Vienne. Les habitants de ce territoire étaient en grande majorité liés à la terre. En effet ils travaillaient tous comme cultivateur, laboureur ou vigneron mais également quelques meuniers et journaliers. Les villages les plus présents dans cet arbre sont divisés en deux groupes: Le Grand-Bourg, Montaigut-le-Blanc, Saint-Etienne-de-Fursac, Marsac et Mourioux-Vieilleville d’un côté, et Saint-Sébastien, Crozant et Azerables de l’autre. Les lignées d’Alice SIMONNET et de Georgette MAMMET sont originaires de la Creuse.", "couleur": "#8a5a3c"}, "36": {"branche": "Rouer & Feuillepain — Indre", "villages": "L' Indre est un département représenté dans cet arbre par la lignée de Louis René ROUER, même si quelques individus de son ascendance sont originaires de la Creuse (vers Saint-Sébastien). Plus précisément son ascendance vient du Sud du département de l'Indre, au niveau des villages d' Argenton-sur-Creuse, Le Pêchereau, Le Menoux, Chaillac, Eguzon-Chantôme ou Saint-Marcel. Cette branche de l'arbre généalogique s'est rattachée à une branche de la Creuse vers le début du XXe siècle. La suite de la descendance est restée en Creuse (jusqu'aux dernières décennies avec de plus en plus de déplacements). Dans cette région, les individus étaient principalement des cultivateurs, des vignerons mais aussi quelques rares meuniers. Tous les villages cités précédemment appartiennent à la région naturelle de Boischaut Sud, territoire majoritairement constitué d'étangs et de mares situés dans le Sud de l'ancienne région du Berry. On trouve dans ce territoire de nombreux agriculteurs, éleveurs mais également vignerons, comme beaucoup de nos ancêtres. La lignée de Maurice Charles FEUILLEPAIN est également originaire de l’Indre, plus précisément des villages de Saint-Août, Tranzault, Montipouret, Saint-Chartier, Verneuil-sur-Igneraie et Montlevicq, au Sud-Est du département.", "couleur": "#8a5a3c"}, "39": {"branche": "Goy — Jura", "villages": "Le département du Jura est représenté par la lignée de Marie-Laurent GOY dans les villages de Gigny, et de Bourcia.", "couleur": "#3a5a8c"}, "42": {"branche": "Journoud — Loire", "villages": "Le département de la Loire est représenté par la lignée d’Antonin JOURNOUD, dans les villages de Rive-de-Gier, Saint-Martin-la-Plaine, Lorette, La Cula et Saint-Genis-Terrenoire.", "couleur": "#3a5a8c"}, "43": {"branche": "Vigier — Haute-Loire", "villages": "Le département de la Haute-Loire est lié à celui de la Loire dans notre arbre généalogique, il est représenté par la lignée de Marie Pauline VIGIER, dans les villages de Retournac et Yssingeaux.", "couleur": "#7a6b3a"}, "44": {"branche": "Rialland — Loire-Atlantique", "villages": "La Loire-Atlantique fait partie des départements les plus représentés de cet arbre généalogique, les individus originaires de ce département n'ont aucun lien familial avec les branches de la Creuse ou de l'Indre. La branche la plus développée dans cet arbre est celle d’Amédée Jean Baptiste RIALLAND, qui étaient majoritairement des meuniers de père en fils. Les villes les plus présentes sont Pontchâteau, Crossac, Saint-Nazaire ou Campbon. Les différents villages dans lesquels vivaient nos ancêtres proviennent du territoire nommé la Brière, situé juste au Nord de l'estuaire de la Loire. Les habitants de ce territoire sont nommés les Briérons. Ce petit territoire est en fait un marais qui est aujourd'hui un parc régional naturel. Mais déjà, à des époques reculées, le marais était une source d'intérêts pour les populations alentour.", "couleur": "#2f6b5e"}, "63": {"branche": "Puy-de-Dôme — à préciser", "villages": "Villages liés à la famille : Châteauneuf-les-Bains, Bussières.", "couleur": "#7a6b3a"}, "66": {"branche": "Bes — Pyrénées-Orientales", "villages": "Le département des Pyrénées-Orientales est représenté par la lignée de Maurice BES, au niveau des villages de Maureillas-las-Illas, Sorède et de Céret.", "couleur": "#c1440e"}, "69": {"branche": "Violet & Journoud & Fillon — Rhône", "villages": "Le département du Rhône est représenté par la lignée de Joséphine VIOLET dans le Beaujolais, au niveau des villages d’Emeringes, Vauxrenard et Avenas. Une partie de la lignée d’Antonin JOURNOUD dans le département de la Loire, provient du sud du département du Rhône, plus précisément du village de Saint-Didier-sous-Riverie par la lignée de Flory FILLON. Une partie de la famille de Louis-Gabriel DROUX a vécu à Lyon entre 1876 et 1922.", "couleur": "#3a5a8c"}, "70": {"branche": "Laurent — Haute-Saône", "villages": "Le département de la Haute-Saône est représenté par la même lignée que celle du département des Vosges, il s’agit de celle de Joseph LAURENT, au niveau du village de Quers.", "couleur": "#3a5a8c"}, "71": {"branche": "Droux — Saône-et-Loire", "villages": "Le département de la Saône-et-Loire est représenté par la lignée Gabriel Louis DROUX, au niveau des villages de Sennecey-le-Grand, La Chapelle-sous-Brancion et Royer.", "couleur": "#3a5a8c"}, "73": {"branche": "Savoie — à préciser", "villages": "Villages liés à la famille : Le Montcel.", "couleur": "#3a5a8c"}, "74": {"branche": "Haute-Savoie — à préciser", "villages": "Villages liés à la famille : Manigod.", "couleur": "#3a5a8c"}, "75": {"branche": "Paris — à préciser", "villages": "Aucune note rédigée pour l'instant dans la Chronique.", "couleur": "#a3862a"}, "79": {"branche": "Rethore & Guerin — Deux-Sèvres", "villages": "Le département des Deux-Sèvres est représenté par la lignée de Hélène Germaine RETHORE, dans les villages de Moutiers-sous-Argenton, Argenton-l’Eglise, Mauzé-Thouarsais et La Chapelle-Gaudin dans le Nord du département. Depuis la même lignée, la branche de Jeanne GUERIN provient du village de Moncoutant, dans le Sud du département.", "couleur": "#2f6b5e"}, "87": {"branche": "Reynaud & Hirat & Authier — Haute-Vienne", "villages": "Le département de la Haute-Vienne est représenté dans mon arbre généalogique par la lignée de Pauline REYNAUD au niveau des villages de Folles et de Bersac-sur-Rivalier au Nord du département. La lignée de Jean HIRAT, époux de Pauline REYNAUD, provient quant à elle des villages de Saint-Cyr, Cognac-la-Forêt, Saint-Auvent et Saint-Martin-de-Jussac. Mais aussi par la lignée de Roseline AUTHIER au niveau des villages de La Roche-l’Abeille, Château-Chervix et Saint-Priest-Ligoure dans le Sud du département, bien qu’elle soit née à Peyrat-de-Bellac.", "couleur": "#8a5a3c"}, "88": {"branche": "Laurent — Vosges", "villages": "Le département des Vosges est représenté par la lignée de Joseph LAURENT, liée à celle de Héloïse LAURENT, au niveau des villages de Rupt-sur-Moselle, Ramonchamp et La Bresse.", "couleur": "#6b4c8c"}, "92": {"branche": "Hauts-de-Seine — à préciser", "villages": "Villages liés à la famille : Neuilly-sur-Seine.", "couleur": "#a3862a"}, "94": {"branche": "Val-de-Marne — à préciser", "villages": "Villages liés à la famille : Maisons-Alfort.", "couleur": "#a3862a"}};
   const names = {"01": "Ain", "02": "Aisne", "03": "Allier", "04": "Alpes-de-Haute-Provence", "05": "Hautes-Alpes", "06": "Alpes-Maritimes", "2A": "Corse-du-Sud", "2B": "Haute-Corse", "07": "Ardèche", "08": "Ardennes", "09": "Ariège", "10": "Aube", "11": "Aude", "12": "Aveyron", "13": "Bouches-du-Rhône", "14": "Calvados", "15": "Cantal", "16": "Charente", "17": "Charente-Maritime", "18": "Cher", "19": "Corrèze", "21": "Côte-d'Or", "22": "Côtes-d'Armor", "23": "Creuse", "24": "Dordogne", "25": "Doubs", "26": "Drôme", "27": "Eure", "28": "Eure-et-Loir", "29": "Finistère", "30": "Gard", "31": "Haute-Garonne", "32": "Gers", "33": "Gironde", "34": "Hérault", "35": "Ille-et-Vilaine", "36": "Indre", "37": "Indre-et-Loire", "38": "Isère", "39": "Jura", "40": "Landes", "41": "Loir-et-Cher", "42": "Loire", "43": "Haute-Loire", "44": "Loire-Atlantique", "45": "Loiret", "46": "Lot", "47": "Lot-et-Garonne", "48": "Lozère", "49": "Maine-et-Loire", "50": "Manche", "51": "Marne", "52": "Haute-Marne", "53": "Mayenne", "54": "Meurthe-et-Moselle", "55": "Meuse", "56": "Morbihan", "57": "Moselle", "58": "Nièvre", "59": "Nord", "60": "Oise", "61": "Orne", "62": "Pas-de-Calais", "63": "Puy-de-Dôme", "64": "Pyrénées-Atlantiques", "65": "Hautes-Pyrénées", "66": "Pyrénées-Orientales", "67": "Bas-Rhin", "68": "Haut-Rhin", "69": "Rhône", "70": "Haute-Saône", "71": "Saône-et-Loire", "72": "Sarthe", "73": "Savoie", "74": "Haute-Savoie", "75": "Paris", "76": "Seine-Maritime", "77": "Seine-et-Marne", "78": "Yvelines", "79": "Deux-Sèvres", "80": "Somme", "81": "Tarn", "82": "Tarn-et-Garonne", "83": "Var", "84": "Vaucluse", "85": "Vendée", "86": "Vienne", "87": "Haute-Vienne", "88": "Vosges", "89": "Yonne", "90": "Territoire de Belfort", "91": "Essonne", "92": "Hauts-de-Seine", "93": "Seine-Saint-Denis", "94": "Val-de-Marne", "95": "Val-d'Oise"};
-
+ 
   const panelTitle = document.getElementById('panel-title');
   const panelBody = document.getElementById('panel-body');
   const legendList = document.getElementById('legend-list');
-
+ 
+  function renderBlocks(blocks) {
+    if (!blocks || blocks.length === 0) {
+      return '<p class="sec-text placeholder">À compléter.</p>';
+    }
+    return blocks.map(b => {
+      if (b.type === 'image') {
+        return '<img class="sec-img" src="' + b.src + '" alt="">';
+      }
+      return '<p class="sec-text">' + b.texte + '</p>';
+    }).join('');
+  }
+ 
+  function renderSection(s) {
+    let inner = '<h3 class="sec-title">' + s.titre + '</h3>';
+    if (s.blocks) {
+      inner += renderBlocks(s.blocks);
+    } else {
+      inner += (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '');
+      inner += '<p class="sec-text">' + s.texte + '</p>';
+    }
+    return '<div class="sec-block">' + inner + '</div>';
+  }
+ 
+  function renderBody(info) {
+    if (info.sections) {
+      return info.sections.map(renderSection).join('');
+    }
+    return '<p class="villages">' + info.villages + '</p>';
+  }
+ 
   function showDept(code) {
     document.querySelectorAll('path.dept.selected').forEach(p => p.classList.remove('selected'));
     const el = document.getElementById('d' + code);
     if (el) el.classList.add('selected');
-
+ 
     const name = names[code] || code;
     const info = family[code];
-
+ 
     if (info) {
       panelTitle.textContent = name + ' (' + code + ')';
       panelBody.innerHTML =
         '<p class="branche">' + info.branche + '</p>' +
-        '<p class="villages">' + info.villages + '</p>';
+        renderBody(info);
     } else {
       panelTitle.textContent = name + ' (' + code + ')';
       panelBody.innerHTML = '<p class="placeholder">Aucune branche recensée ici pour l\'instant.</p>';
     }
-
+ 
     el && el.scrollIntoView({block: 'nearest', behavior: 'smooth'});
   }
-
+ 
   document.querySelectorAll('path.dept').forEach(p => {
     p.addEventListener('click', () => showDept(p.dataset.code));
     const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
     title.textContent = p.dataset.name;
     p.appendChild(title);
   });
-
+ 
   Object.keys(family).sort((a,b) => (names[a]||'').localeCompare(names[b]||'')).forEach(code => {
     const li = document.createElement('li');
     const sw = document.createElement('span');
@@ -340,11 +399,11 @@
     li.appendChild(label);
     li.addEventListener('click', () => showDept(code));
     legendList.appendChild(li);
-
+ 
     const pathEl = document.getElementById('d' + code);
     if (pathEl) pathEl.style.fill = family[code].couleur;
   });
 </script>
-
+ 
 </body>
 </html>
