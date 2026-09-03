@@ -13,9 +13,9 @@
     --ink-soft: #5a4c38;
     --seal: #6b1f2b;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   body {
     margin: 0;
     background: var(--paper);
@@ -26,29 +26,29 @@
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
     padding: 24px 20px 60px;
   }
-
+ 
   .page { max-width: 1200px; margin: 0 auto; }
-
+ 
   header.masthead {
     border-bottom: 3px double var(--ink-soft);
     padding-bottom: 14px;
     margin-bottom: 26px;
   }
-
+ 
   header.masthead .kicker {
     font-style: italic;
     font-size: 0.92rem;
     color: var(--ink-soft);
     margin: 0 0 4px;
   }
-
+ 
   header.masthead h1 {
     font-size: clamp(1.7rem, 3.4vw, 2.5rem);
     margin: 0 0 8px;
     font-weight: 400;
     letter-spacing: 0.01em;
   }
-
+ 
   header.masthead p.lede {
     max-width: 78ch;
     color: var(--ink-soft);
@@ -56,13 +56,13 @@
     line-height: 1.55;
     margin: 0;
   }
-
+ 
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 16px;
   }
-
+ 
   .card {
     background: var(--card);
     border: 1px solid var(--ink-soft);
@@ -75,7 +75,7 @@
     outline: 2px solid var(--seal);
     outline-offset: -2px;
   }
-
+ 
   .card .region {
     display: inline-block;
     font-size: 0.72rem;
@@ -84,21 +84,21 @@
     border-bottom: 1px solid rgba(107,31,43,0.4);
     margin-bottom: 8px;
   }
-
+ 
   .card h3 {
     font-size: 1.08rem;
     font-weight: 400;
     margin: 0 0 8px;
     line-height: 1.3;
   }
-
+ 
   .card .teaser {
     font-size: 0.88rem;
     color: var(--ink-soft);
     line-height: 1.5;
     margin: 0;
   }
-
+ 
   .panel {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
@@ -106,7 +106,7 @@
     margin-top: 28px;
     min-height: 140px;
   }
-
+ 
   .panel h2 {
     font-size: 1.5rem;
     font-weight: 400;
@@ -114,20 +114,20 @@
     border-bottom: 1px solid rgba(43,32,21,0.3);
     padding-bottom: 12px;
   }
-
+ 
   .panel .region-tag {
     font-style: italic;
     color: var(--seal);
     margin: 10px 0 6px;
     font-size: 0.95rem;
   }
-
+ 
   .panel .placeholder {
     color: var(--ink-soft);
     font-style: italic;
     line-height: 1.6;
   }
-
+ 
   .sec-title {
     font-size: 1.1rem;
     font-weight: 400;
@@ -138,27 +138,67 @@
     border-top: 1px dashed rgba(43,32,21,0.25);
   }
   .sec-block:first-of-type .sec-title { margin-top: 16px; }
-
+ 
   .sec-img {
     display: block;
     width: 100%;
-    max-width: 460px;
+    max-width: 600px;
     height: auto;
-    margin: 4px 0 10px;
+    margin: 10px auto 4px;
     border: 1px solid var(--ink-soft);
     padding: 4px;
     background: var(--paper);
   }
-
+ 
+  .sec-img-caption {
+    text-align: center;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+ 
+  .sec-link {
+    display: block;
+    margin: 4px 0 14px;
+    font-size: 0.98rem;
+  }
+  .sec-link a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--seal);
+    padding-bottom: 1px;
+  }
+  .sec-link a:hover { color: var(--seal); }
+  .sec-link .icon { margin-right: 6px; }
+ 
+  .sec-video {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin: 10px auto 4px;
+    overflow: hidden;
+    border: 1px solid var(--ink-soft);
+    background: #000;
+  }
+  .sec-video iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+ 
   .sec-text {
     line-height: 1.7;
     color: var(--ink);
-    margin: 0 0 4px;
+    margin: 0 auto 12px;
     font-size: 1rem;
     max-width: 82ch;
     text-align: justify;
   }
-
+ 
   footer.note {
     max-width: 84ch;
     margin: 30px auto 0;
@@ -173,98 +213,91 @@
 </head>
 <body>
 <div class="page">
-
+ 
   <header class="masthead">
     <p class="kicker">Chronique familiale — section Métiers</p>
     <h1>Les métiers de nos ancêtres</h1>
     <p class="lede">Neuf métiers documentés pour l'instant, région par région. Touchez une carte pour lire son détail ci-dessous. Cette page est pensée pour grandir : chaque nouveau métier rédigé s'ajoutera simplement à la grille.</p>
   </header>
-
+ 
   <div class="grid" id="grid"></div>
-
+ 
   <div class="panel" id="panel">
     <h2 id="panel-title">Choisissez un métier</h2>
     <p class="placeholder" id="panel-body">Touchez une carte ci-dessus pour afficher son détail ici.</p>
   </div>
-
+ 
   <footer class="note">
     Pour ajouter un métier, complétez le tableau <code>metiers</code> dans le <code>&lt;script&gt;</code> avec un nouvel objet <code>{ id, titre, region, teaser, sections }</code> — la grille et le panneau de détail s'adaptent automatiquement, sans autre modification du code.
   </footer>
-
+ 
 </div>
-
+ 
 <script>
-  const metiers = [{{
-  "id": "macons_creuse",
-  "titre": "Les Maçons de la Creuse",
-  "region": "Creuse",
-  "teaser": "Trois générations de Mammet, migrants saisonniers du bâtiment.",
-  "sections": [
-    {
-      "titre": "Avant-propos",
-      "blocks": [
-        {"type": "image", "src": "https://byggvir63.github.io/chronique-familiale/photos/macon-creuse-1.jpg"},
-        {"type": "texte", "texte": "Dans notre arbre, quatre hommes de la lignée MAMMET, tous nés à Saint-Étienne-de-Fursac, ont exercé ce métier qui a façonné pendant deux siècles la vie de tout un pan du Limousin : Jacques MAMMET (né en 1829), son fils Eugène Toussaint MAMMET (né en 1851), et ses petit-fils Léon Pierre MAMMET (1888-1962) ainsi que Paul Marcel MAMMET (1899-1951)."}
-      ]
-    },
-    {
-      "titre": "Un pays pauvre, une migration devenue mode de vie",
-      "blocks": [
-        {"type": "texte", "texte": "La Creuse est une terre vallonnée et granitique, peu fertile, qui n'a jamais permis à ses habitants de vivre uniquement de la terre. « De nombreux paysans creusois, propriétaires de terres qui ne leur offraient que de maigres ressources, s'en allaient ainsi passer les trois quarts de l'année sur les chantiers de construction des grandes villes : Paris, Lyon, Bordeaux notamment, pour y exercer le métier de maçon ». « De l'adolescence jusque vers la quarantaine, ces hommes étaient donc fermiers l'hiver et ouvriers du bâtiment le reste de l'année »."},
-        {"type": "texte", "texte": "Ce mode de vie n'était pas propre à Saint-Étienne-de-Fursac, « la migration touchait tout le département de la Creuse ainsi que les départements limitrophes : l'Indre au nord, la Haute-Vienne à l'ouest, la Corrèze au sud et le Puy-de-Dôme à l'est ». Elle suivait un rythme annuel bien établi : une émigration temporaire, dite « d'été », qui rythmait la vie de ces communes depuis des siècles."},
-        {"type": "texte", "texte": "L'ampleur du phénomène donne la mesure de ce que représentait ce métier pour des villages comme le leur : « au milieu du XIXe siècle, cette migration représentait environ 13% de la population totale de la région, un pourcentage pouvant dépasser 25% dans certaines communes, avec près de 34 000 hommes migrants recensés en 1846 ». « On estime qu'en 1850, deux hommes actifs sur trois de la région partaient ainsi chaque année »."}
-      ]
-    },
-    {
-      "titre": "Une tradition ancienne, remontant au XVIIe siècle",
-      "blocks": [
-        {"type": "texte", "texte": "Le métier ne date pas du XIXe siècle : « dès 1627, le lieutenant général du Limousin envoya, à la demande de Louis XIII, des maçons creusois travailler à la construction de la digue de Richelieu à La Rochelle », un chantier déjà mené par des maçons limousins dont la renommée était établie."}
-      ]
-    }
-  ]
-}, 
-                   {"id": "vignerons_indre", "titre": "Les Vignerons de l'Indre", "region": "Indre", "teaser": "Cinq générations de Rouer sur les coteaux d'Argenton-sur-Creuse, jusqu'au phylloxéra.", "sections": [{"titre": "Dans la famille", "texte": "Cinq générations consécutives de Rouer ont vécu de la vigne à Argenton-sur-Creuse et au Pêchereau, sur les coteaux qui dominent la vallée de la Creuse, du début du XVIIIe siècle jusqu'aux dernières décennies du XIXe : Jean Rouer (1721-1797), Pierre Rouer (1756-1833), Jean Rouer (1778-1851), Jean Rouer (1805-1848) et Claude Rouer (1847-1928). La génération suivante, celle de Sylvain Rouer, fils de Claude, quitte définitivement la vigne pour la terre, et l'Indre pour la Creuse — un tournant lié à la catastrophe du phylloxéra qui ravage le vignoble à la fin du XIXe siècle."}]}, 
-                   {"id": "meuniers_beaujolais", "titre": "Les Meuniers du Beaujolais", "region": "Rhône", "teaser": "Le moulin banal et la mouture, avant la Révolution.", "sections": [{"titre": "Le métier", "texte": "Autrefois le pain tenait une part très importante dans l'alimentation. Dans les campagnes, il fallait transformer les céréales en farine, d'où l'importance des moulins et donc des meuniers. Jusqu'à la Révolution, les seigneurs exercent un véritable monopole en instaurant l'obligation pour tous les paysans d'utiliser le moulin banal moyennant un prélèvement sur le grain appelé « émolument ». Le meunier, lui, touche à titre de salaire une rétribution en nature, « la mouture »."}]}, 
-                   {"id": "meuniers_loire_atlantique", "titre": "Les Meuniers de Loire-Atlantique", "region": "Loire-Atlantique", "teaser": "Briand et Rialland, meuniers de père en fils sur des moulins à vent.", "sections": [{"titre": "Dans la famille", "texte": "Le moulin à vent se développe à partir du XIIe siècle dans toutes les régions venteuses de France. Dans notre famille, c'est en Loire-Atlantique que nous trouvons des meuniers exploitant ce type de moulins. Les Briand et les Rialland étaient meuniers de père en fils. Le plus ancien indiqué comme meunier est Jean Briand en 1680 sur son acte de mariage. Robert Rialland, né en 1715, est mentionné comme meunier au moulin neuf à Donges sur son acte de décès en 1780."}]}, 
-                   {"id": "mineurs_loire", "titre": "Les Mineurs de la Loire", "region": "Loire", "teaser": "Des Journoud grangers devenus mineurs puis contremaîtres dans le bassin du Gier.", "sections": [{"titre": "Dans la famille", "texte": "Dans le bassin houiller de la vallée du Gier (Loire), c'est Mathieu Journoud, né en 1769, qui devient le premier mineur de la famille — ses parents cultivaient la terre mais n'étaient pas propriétaires, ils étaient grangers. Après lui, ses fils Antoine et Jean Antoine travaillent à la mine comme ouvriers puis comme gouverneurs (contremaîtres) aux mines."}]}, 
-                   {"id": "charrons_deux_sevres", "titre": "Les Charrons des Deux-Sèvres", "region": "Deux-Sèvres", "teaser": "Sept générations de charrons à Moutiers-sous-Argenton, du XVIIIe au XXe siècle.", "sections": [{"titre": "Dans la famille", "texte": "À Moutiers-sous-Argenton (Deux-Sèvres), on trouve des charrons depuis le XVIIIe siècle et jusqu'au XXe siècle. Charles Puchault est le premier, ensuite il y eut des Hérault et des Rethoré, en tout sept générations."}]}, 
-                   {"id": "cloutiers_loire", "titre": "Les Cloutiers de la Loire", "region": "Loire", "teaser": "Une forge à domicile, un marteau et une souche de bois : la fabrication artisanale du clou.", "sections": [{"titre": "Le métier", "texte": "Le cloutier travaille dans une forge installée chez lui. Faire du clou ne demande pas d'outillage important : les clous sont forgés à l'unité sur une petite enclume fixée sur une souche en bois ou sur une pierre à clous, avec un marteau spécifique et des tenailles, à partir de tiges de fer de différents calibres. Le cloutier façonne la pointe du clou sur l'enclume, le coupe à la longueur voulue, puis le place verticalement dans la « cloutière » pour en former la tête. Il existe autant de types de cloutières que de types de clous — clous à soulier, clous à ferrer les bêtes, clous de charpentier, clous de tapissier..."}]}, 
-                   {"id": "merciers_ognon", "titre": "Les Merciers ambulants de la vallée de l'Ognon", "region": "Haute-Saône", "teaser": "Le colporteur, sa marchandise sur le dos, de hameau en hameau.", "sections": [{"titre": "Le métier", "texte": "Le mercier ambulant, appelé aussi colporteur, part pour de longs mois sur les chemins avec sa marchandise sur le dos ou dans une charrette à bras, ou tirée par un âne pour les plus riches. Il va de hameau en hameau, de ferme en ferme, et vend surtout des articles de mercerie : tissus, broderies, rubans, dés à coudre, aiguilles, fils, ciseaux. Il renouvelle son stock au gré des foires. Ce métier, ni sûr — il se fait parfois dépouiller chemin faisant — ni confortable — il dort çà et là dans les granges ou sous les ponts —, s'est éteint peu à peu avec l'amélioration des moyens de circulation."}]}, 
-                   {"id": "voituriers_loire", "titre": "Les Voituriers par terre de la Loire", "region": "Loire", "teaser": "Transporteurs par terre à Rive-de-Gier, distincts des voituriers par eau.", "sections": [{"titre": "Dans la famille", "texte": "Dans notre famille, on trouve de nombreux voituriers, tous dans le département de la Loire, surtout à Saint-Genis-Terrenoire (Genilac) et à Rive-de-Gier. En 1687, pour son mariage à Rive-de-Gier, Pierre Tardy est dit voiturier par terre. À cette époque, le terme voiturier signifiait transporteur, et on distinguait les voituriers par terre et les voituriers par eau."}]}];
-
+  const metiers = [{"id": "macons_creuse", "titre": "Les Maçons de la Creuse", "region": "Creuse", "teaser": "Trois générations de Mammet, migrants saisonniers du bâtiment.", "sections": [{"titre": "Avant-propos", "blocks": [{"type": "image", "src": "https://byggvir63.github.io/chronique-familiale/photos/macon-creuse-1.jpg"}, {"type": "texte", "texte": "Dans notre arbre, quatre hommes de la lignée MAMMET, tous nés à Saint-Étienne-de-Fursac, ont exercé ce métier qui a façonné pendant deux siècles la vie de tout un pan du Limousin : Jacques MAMMET (né en 1829), son fils Eugène Toussaint MAMMET (né en 1851), et ses petit-fils Léon Pierre MAMMET (1888-1962) ainsi que Paul Marcel MAMMET (1899-1951)."}]}, {"titre": "Un pays pauvre, une migration devenue mode de vie", "blocks": [{"type": "texte", "texte": "La Creuse est une terre vallonnée et granitique, peu fertile, qui n'a jamais permis à ses habitants de vivre uniquement de la terre. « De nombreux paysans creusois, propriétaires de terres qui ne leur offraient que de maigres ressources, s'en allaient ainsi passer les trois quarts de l'année sur les chantiers de construction des grandes villes : Paris, Lyon, Bordeaux notamment, pour y exercer le métier de maçon ». « De l'adolescence jusque vers la quarantaine, ces hommes étaient donc fermiers l'hiver et ouvriers du bâtiment le reste de l'année »."}, {"type": "texte", "texte": "Ce mode de vie n'était pas propre à Saint-Étienne-de-Fursac, « la migration touchait tout le département de la Creuse ainsi que les départements limitrophes : l'Indre au nord, la Haute-Vienne à l'ouest, la Corrèze au sud et le Puy-de-Dôme à l'est ». Elle suivait un rythme annuel bien établi : une émigration temporaire, dite « d'été », qui rythmait la vie de ces communes depuis des siècles."}, {"type": "texte", "texte": "L'ampleur du phénomène donne la mesure de ce que représentait ce métier pour des villages comme le leur : « au milieu du XIXe siècle, cette migration représentait environ 13% de la population totale de la région, un pourcentage pouvant dépasser 25% dans certaines communes, avec près de 34 000 hommes migrants recensés en 1846 ». « On estime qu'en 1850, deux hommes actifs sur trois de la région partaient ainsi chaque année »."}]}, {"titre": "Une tradition ancienne, remontant au XVIIe siècle", "blocks": [{"type": "texte", "texte": "Le métier ne date pas du XIXe siècle : « dès 1627, le lieutenant général du Limousin envoya, à la demande de Louis XIII, des maçons creusois travailler à la construction de la digue de Richelieu à La Rochelle », un chantier déjà mené par des maçons limousins dont la renommée était établie."}]}]}, {"id": "vignerons_indre", "titre": "Les Vignerons de l'Indre", "region": "Indre", "teaser": "Cinq générations de Rouer sur les coteaux d'Argenton-sur-Creuse, jusqu'au phylloxéra.", "sections": [{"titre": "Dans la famille", "texte": "Cinq générations consécutives de Rouer ont vécu de la vigne à Argenton-sur-Creuse et au Pêchereau, sur les coteaux qui dominent la vallée de la Creuse, du début du XVIIIe siècle jusqu'aux dernières décennies du XIXe : Jean Rouer (1721-1797), Pierre Rouer (1756-1833), Jean Rouer (1778-1851), Jean Rouer (1805-1848) et Claude Rouer (1847-1928). La génération suivante, celle de Sylvain Rouer, fils de Claude, quitte définitivement la vigne pour la terre, et l'Indre pour la Creuse — un tournant lié à la catastrophe du phylloxéra qui ravage le vignoble à la fin du XIXe siècle."}]}, {"id": "meuniers_beaujolais", "titre": "Les Meuniers du Beaujolais", "region": "Rhône", "teaser": "Le moulin banal et la mouture, avant la Révolution.", "sections": [{"titre": "Le métier", "texte": "Autrefois le pain tenait une part très importante dans l'alimentation. Dans les campagnes, il fallait transformer les céréales en farine, d'où l'importance des moulins et donc des meuniers. Jusqu'à la Révolution, les seigneurs exercent un véritable monopole en instaurant l'obligation pour tous les paysans d'utiliser le moulin banal moyennant un prélèvement sur le grain appelé « émolument ». Le meunier, lui, touche à titre de salaire une rétribution en nature, « la mouture »."}]}, {"id": "meuniers_loire_atlantique", "titre": "Les Meuniers de Loire-Atlantique", "region": "Loire-Atlantique", "teaser": "Briand et Rialland, meuniers de père en fils sur des moulins à vent.", "sections": [{"titre": "Dans la famille", "texte": "Le moulin à vent se développe à partir du XIIe siècle dans toutes les régions venteuses de France. Dans notre famille, c'est en Loire-Atlantique que nous trouvons des meuniers exploitant ce type de moulins. Les Briand et les Rialland étaient meuniers de père en fils. Le plus ancien indiqué comme meunier est Jean Briand en 1680 sur son acte de mariage. Robert Rialland, né en 1715, est mentionné comme meunier au moulin neuf à Donges sur son acte de décès en 1780."}]}, {"id": "mineurs_loire", "titre": "Les Mineurs de la Loire", "region": "Loire", "teaser": "Des Journoud grangers devenus mineurs puis contremaîtres dans le bassin du Gier.", "sections": [{"titre": "Dans la famille", "texte": "Dans le bassin houiller de la vallée du Gier (Loire), c'est Mathieu Journoud, né en 1769, qui devient le premier mineur de la famille — ses parents cultivaient la terre mais n'étaient pas propriétaires, ils étaient grangers. Après lui, ses fils Antoine et Jean Antoine travaillent à la mine comme ouvriers puis comme gouverneurs (contremaîtres) aux mines."}]}, {"id": "charrons_deux_sevres", "titre": "Les Charrons des Deux-Sèvres", "region": "Deux-Sèvres", "teaser": "Sept générations de charrons à Moutiers-sous-Argenton, du XVIIIe au XXe siècle.", "sections": [{"titre": "Dans la famille", "texte": "À Moutiers-sous-Argenton (Deux-Sèvres), on trouve des charrons depuis le XVIIIe siècle et jusqu'au XXe siècle. Charles Puchault est le premier, ensuite il y eut des Hérault et des Rethoré, en tout sept générations."}]}, {"id": "cloutiers_loire", "titre": "Les Cloutiers de la Loire", "region": "Loire", "teaser": "Une forge à domicile, un marteau et une souche de bois : la fabrication artisanale du clou.", "sections": [{"titre": "Le métier", "texte": "Le cloutier travaille dans une forge installée chez lui. Faire du clou ne demande pas d'outillage important : les clous sont forgés à l'unité sur une petite enclume fixée sur une souche en bois ou sur une pierre à clous, avec un marteau spécifique et des tenailles, à partir de tiges de fer de différents calibres. Le cloutier façonne la pointe du clou sur l'enclume, le coupe à la longueur voulue, puis le place verticalement dans la « cloutière » pour en former la tête. Il existe autant de types de cloutières que de types de clous — clous à soulier, clous à ferrer les bêtes, clous de charpentier, clous de tapissier..."}]}, {"id": "merciers_ognon", "titre": "Les Merciers ambulants de la vallée de l'Ognon", "region": "Haute-Saône", "teaser": "Le colporteur, sa marchandise sur le dos, de hameau en hameau.", "sections": [{"titre": "Le métier", "texte": "Le mercier ambulant, appelé aussi colporteur, part pour de longs mois sur les chemins avec sa marchandise sur le dos ou dans une charrette à bras, ou tirée par un âne pour les plus riches. Il va de hameau en hameau, de ferme en ferme, et vend surtout des articles de mercerie : tissus, broderies, rubans, dés à coudre, aiguilles, fils, ciseaux. Il renouvelle son stock au gré des foires. Ce métier, ni sûr — il se fait parfois dépouiller chemin faisant — ni confortable — il dort çà et là dans les granges ou sous les ponts —, s'est éteint peu à peu avec l'amélioration des moyens de circulation."}]}, {"id": "voituriers_loire", "titre": "Les Voituriers par terre de la Loire", "region": "Loire", "teaser": "Transporteurs par terre à Rive-de-Gier, distincts des voituriers par eau.", "sections": [{"titre": "Dans la famille", "texte": "Dans notre famille, on trouve de nombreux voituriers, tous dans le département de la Loire, surtout à Saint-Genis-Terrenoire (Genilac) et à Rive-de-Gier. En 1687, pour son mariage à Rive-de-Gier, Pierre Tardy est dit voiturier par terre. À cette époque, le terme voiturier signifiait transporteur, et on distinguait les voituriers par terre et les voituriers par eau."}]}];
+ 
   const gridEl = document.getElementById('grid');
   const panelTitle = document.getElementById('panel-title');
   const panelBody = document.getElementById('panel-body');
-
+ 
+  function renderBlocks(blocks) {
+    if (!blocks || blocks.length === 0) {
+      return '<p class="sec-text placeholder">À compléter.</p>';
+    }
+    return blocks.map(b => {
+      if (b.type === 'image') {
+        const styleAttr = b.width ? ' style="max-width:' + b.width + '"' : '';
+        const caption = b.legende ? '<p class="sec-img-caption">' + b.legende + '</p>' : '';
+        return '<img class="sec-img" src="' + b.src + '"' + styleAttr + ' alt="">' + caption;
+      }
+      if (b.type === 'lien') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">↗</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'pdf') {
+        return '<p class="sec-link"><a href="' + b.href + '" target="_blank" rel="noopener">' +
+               '<span class="icon">📄</span>' + b.label + '</a></p>';
+      }
+      if (b.type === 'video') {
+        const caption = b.titre ? '<p class="sec-img-caption">' + b.titre + '</p>' : '';
+        return '<div class="sec-video"><iframe src="' + b.src + '" allowfullscreen loading="lazy"></iframe></div>' + caption;
+      }
+      return '<p class="sec-text">' + b.texte + '</p>';
+    }).join('');
+  }
+ 
   function renderSections(sections) {
     if (!sections || sections.length === 0) {
       return '<p class="placeholder">Aucun détail rédigé pour l\'instant.</p>';
     }
-    return sections.map(s =>
-      '<div class="sec-block">' +
-      '<h3 class="sec-title">' + s.titre + '</h3>' +
-      (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '') +
-      '<p class="sec-text">' + s.texte + '</p>' +
-      '</div>'
-    ).join('');
+    return sections.map(s => {
+      let inner = '<h3 class="sec-title">' + s.titre + '</h3>';
+      if (s.blocks) {
+        inner += renderBlocks(s.blocks);
+      } else {
+        inner += (s.image ? '<img class="sec-img" src="' + s.image + '" alt="' + s.titre + '">' : '');
+        inner += '<p class="sec-text">' + s.texte + '</p>';
+      }
+      return '<div class="sec-block">' + inner + '</div>';
+    }).join('');
   }
-
+ 
   function showMetier(id) {
     document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
     const cardEl = document.getElementById('card-' + id);
     if (cardEl) cardEl.classList.add('selected');
-
+ 
     const m = metiers.find(x => x.id === id);
     if (!m) return;
-
+ 
     panelTitle.textContent = m.titre;
     panelBody.innerHTML =
       '<p class="region-tag">' + m.region + '</p>' +
       renderSections(m.sections);
-
+ 
     document.getElementById('panel').scrollIntoView({block: 'nearest', behavior: 'smooth'});
   }
-
+ 
   metiers.forEach(m => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -277,6 +310,6 @@
     gridEl.appendChild(card);
   });
 </script>
-
+ 
 </body>
 </html>
