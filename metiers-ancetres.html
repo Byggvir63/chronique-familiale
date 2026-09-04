@@ -70,6 +70,16 @@
     cursor: pointer;
     transition: filter 0.15s ease, transform 0.1s ease;
   }
+
+  .card-img {
+  display: block;
+  width: calc(100% + 40px);
+  height: 120px;
+  object-fit: cover;
+  margin: -18px -20px 12px -20px;
+  border-bottom: 1px solid var(--ink-soft);
+}
+  
   .card:hover { filter: brightness(1.05); }
   .card.selected {
     outline: 2px solid var(--seal);
@@ -238,6 +248,7 @@
   "id": "macons_creuse",
   "titre": "Les Maçons de la Creuse",
   "region": "Creuse",
+  "image" : "https://byggvir63.github.io/chronique-familiale/photos/macon-creuse.jpg",
   "teaser": "Trois générations de Mammet, migrants saisonniers du bâtiment.",
   "sections": [
     {
@@ -304,6 +315,7 @@
   "id": "vignerons_indre",
   "titre": "Les Vignerons de l'Indre",
   "region": "Indre",
+  "image" : "https://byggvir63.github.io/chronique-familiale/photos/vigneron-indre.jpg",
   "teaser": "Cinq générations de Rouer sur les coteaux d'Argenton-sur-Creuse, jusqu'au phylloxéra.",
   "sections": [
     {
@@ -441,13 +453,15 @@
     const card = document.createElement('div');
     card.className = 'card';
     card.id = 'card-' + m.id;
+    const imgHtml = m.image ? '<img class="card-img" src="' + m.image + '" alt="">' : '';
     card.innerHTML =
+      imgHtml +
       '<span class="region">' + m.region + '</span>' +
       '<h3>' + m.titre + '</h3>' +
       '<p class="teaser">' + m.teaser + '</p>';
     card.addEventListener('click', () => showMetier(m.id));
     gridEl.appendChild(card);
-  });
+});
 </script>
  
 </body>
