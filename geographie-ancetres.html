@@ -420,7 +420,7 @@ header.masthead .kicker a:hover {
     p.appendChild(title);
   });
 
-  Object.keys(family).sort((a,b) => (names[a]||'').localeCompare(names[b]||'')).forEach(code => {
+  Object.keys(family).sort((a,b) => a.localeCompare(b)).forEach(code => {
     const li = document.createElement('li');
     const sw = document.createElement('span');
     sw.className = 'swatch';
