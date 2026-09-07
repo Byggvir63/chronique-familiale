@@ -299,7 +299,36 @@ header.masthead .kicker a:hover {
                     {"id": "films-bataille-de-gaulle", "titre": "Les deux films « Bataille de Gaulle »", "tag": "9 juillet 2026", "image": "https://byggvir63.github.io/chronique-familiale/photos/genealogiste-bataille-de-gaulle.jpg", "teaser": "Deux films, une même bataille : comparer les sources audiovisuelles disponibles.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]},
                     {"id": "prisonniers-croix-rouge", "titre": "Les prisonniers de guerre vus par la Croix-Rouge", "tag": "22 septembre 2021", "image": "https://byggvir63.github.io/chronique-familiale/photos/genealogiste-croix-rouge.jpg", "teaser": "Ce que les archives de la Croix-Rouge internationale révèlent sur les ancêtres captifs.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]},
                     {"id": "pere-fernand-hirat", "titre": "Qui est le père de Fernand Hirat ?", "tag": "14 mars 2020", "image": "https://byggvir63.github.io/chronique-familiale/photos/genealogiste-fernand-hirat.jpg", "teaser": "Une impasse généalogique et la méthode suivie pour tenter de la résoudre.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]},
-                    {"id": "nomenclature-genealogie", "titre": "La nomenclature des archives en généalogie", "tag": "8 juillet 2019", "image": "https://byggvir63.github.io/chronique-familiale/photos/genealogiste-nomenclature.jpg", "teaser": "Créer une nomenclature claire des individus de l'arbre généalogique.", "sections": [{"titre": "Vue d'ensemble", "texte": "À compléter avec le texte de cet article."}]}];
+                    {
+  "id": "nomenclature-sources-archives",
+  "titre": "La nomenclature des sources et archives",
+  "tag": "10 juillet 2026",
+  "image": "https://byggvir63.github.io/chronique-familiale/photos/genealogiste-sources-archives.jpg",
+  "teaser": "Relier chaque document retrouvé à un individu, une date et un type d'acte.",
+  "sections": [
+    {
+      "titre": "Le problème : un document sans ancrage ne sert à rien",
+      "texte": "Sept ans après avoir posé les bases de la <strong>nomenclature SDE</strong> pour identifier les individus, un problème symétrique s'est imposé à moi : à quoi bon savoir désigner précisément le Sosa 224.7 si les dizaines d'actes, de fiches matricules et de photographies que j'accumule à son sujet restent dispersés sans lien clair entre eux ? Un acte de naissance scanné, une carte postale de famille, un plan cadastral : chaque document est une preuve, mais une preuve isolée ne raconte rien. Il fallait un système capable de répondre en un coup d'œil à trois questions : de qui parle ce document, quand s'est-il produit, et de quelle nature est-il ?"
+    },
+    {
+      "titre": "L'architecture : deux onglets qui se répondent",
+      "texte": "La solution s'est construite naturellement autour de mon tableur de travail. Un premier onglet, <strong>Individus</strong>, attribue à chaque personne de l'arbre son code SDE unique — celui-là même détaillé dans l'article sur la nomenclature en généalogie. Un second onglet, <strong>Sources</strong>, vient ensuite référencer chaque document retrouvé en reprenant trois informations : le code SDE de la personne concernée, la date de l'événement documenté, et un code désignant la nature du document. Cette architecture reprend l'esprit de ma nomenclature EVE-SDE : [Code_SDE] :: [Date] :: [Code_Document]. Un acte de naissance devient ainsi 18.3a(3)::1882-04-14::BIRT, une fiche matricule 112.2.2::1914-08-02::MILT. Le lien entre l'individu et sa trace documentaire ne repose plus sur la mémoire ou sur un classement de dossiers approximatif : il est écrit dans la clé elle-même.",
+      "image": "https://byggvir63.github.io/chronique-familiale/photos/schema-onglets-individus-sources.jpg"
+    },
+    {
+      "titre": "Une bibliothèque de codes construite par la pratique",
+      "texte": "Le troisième maillon de la chaîne, le <strong>code de type de document</strong>, s'est enrichi au fil des recherches jusqu'à compter aujourd'hui une quarantaine d'entrées, organisées par grandes catégories. L'État Civil & Religion regroupe les actes classiques (BIRT, BAPM, MARR, DEAT), tandis que la catégorie Militaire isole les fiches matricules (MILT) et les journaux de marche des régiments (JMOR) — précieux pour recouper le vécu d'un ancêtre mobilisé avec l'histoire de son unité. Les Bases de Données Spécialisées couvrent des sources parfois très pointues : la base Léonore pour la Légion d'honneur (LEON), les fichiers de la Croix-Rouge sur les prisonniers de guerre (CICR), ou encore le dictionnaire des contemporains des guerres de Vendée (DVGV), qui vient nourrir directement le chapitre sur Jean Dugas. Les Cartes et plans (Cassini, état-major napoléonien, cadastre, photo satellite ancienne ou contemporaine) permettent de superposer un lieu de vie retrouvé sur un acte à sa géographie réelle. Sans oublier les catégories plus personnelles : Photographies, avec ses nuances entre photo de groupe (PGRP), de mariage (PMAR) ou de classe (PCLA), et Témoignage, pour les récits écrits ou filmés recueillis directement auprès de la famille."
+    },
+    {
+      "titre": "Ce que ce système change concrètement",
+      "texte": "Le bénéfice le plus immédiat tient dans le tri automatique : en nommant mes fichiers numériques selon cette même logique (18.3a(3)_1882-04-14_BIRT_Acte_Naissance.jpg), mon dossier d'archives se range de lui-même par individu puis par ordre chronologique, sans le moindre effort de classement manuel. Mais l'intérêt dépasse le simple rangement. En consultant l'onglet Sources d'un individu donné, je vois immédiatement les <strong>trous dans sa documentation</strong> : tel ancêtre dispose d'un acte de naissance et d'une fiche matricule, mais aucun acte de décès ni de recensement — c'est précisément là que la recherche doit se concentrer ensuite. Le système transforme un tableur de références en véritable feuille de route pour les prochaines investigations."
+    },
+    {
+      "titre": "Un chantier qui s'enrichit sans jamais se figer",
+      "texte": "Comme la nomenclature SDE avant elle, cette liste de codes n'a rien de définitif. Chaque nouvelle catégorie de document rencontrée — un permis de conduire ancien, une liste électorale, un article de loi cité dans un dossier de succession — a donné lieu à un nouveau code plutôt qu'à un classement \"Divers\" qui aurait fini par tout engloutir. Le code AUTR reste d'ailleurs volontairement la seule véritable case fourre-tout du système, un aveu assumé que toute nomenclature, aussi soignée soit-elle, doit laisser une porte de sortie pour l'imprévu."
+    }
+  ]
+}]}];
  
   const gridEl = document.getElementById('grid');
   const panelTitle = document.getElementById('panel-title');
