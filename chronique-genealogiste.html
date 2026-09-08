@@ -229,6 +229,88 @@ header.masthead .kicker a:hover {
     padding-top: 14px;
   }
   footer.note code { background: rgba(43,32,21,0.08); padding: 1px 5px; font-size: 0.82rem; }
+
+  .contribute {
+  max-width: 680px;
+  margin: 40px auto 0;
+  background: var(--card);
+  border: 1px solid var(--ink-soft);
+  padding: 30px 34px;
+}
+
+.contribute h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0 0 8px;
+  border-bottom: 1px solid rgba(43,32,21,0.3);
+  padding-bottom: 10px;
+}
+
+.contribute p.hint {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 12px 0 22px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label {
+  display: block;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+.form-row input[type="text"],
+.form-row textarea {
+  width: 100%;
+  font-family: Georgia, serif;
+  font-size: 0.98rem;
+  padding: 9px 12px;
+  border: 1px solid var(--ink-soft);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-row input[type="file"] {
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.contribute button {
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  padding: 10px 26px;
+  background: var(--seal);
+  color: #f1e6d8;
+  border: none;
+  cursor: pointer;
+}
+.contribute button:hover { filter: brightness(1.1); }
+
+.file-reminder {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: var(--paper);
+  border: 1px dashed var(--ink-soft);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  display: none;
+}
+.file-reminder.visible { display: block; }
+.file-reminder strong { color: var(--ink); }
+  
 </style>
 </head>
 <body>
@@ -246,7 +328,38 @@ header.masthead .kicker a:hover {
     <h2 id="panel-title">Choisissez un article</h2>
     <p class="placeholder" id="panel-body">Touchez une carte ci-dessus pour afficher son détail ici.</p>
   </div>
- 
+
+<section class="contribute">
+  <h2>Contribuer à la chronique</h2>
+  <p class="hint">Vous avez une photo, un document ou une anecdote à partager ? Remplissez ce formulaire : votre client mail s'ouvrira avec le message déjà prêt à envoyer à Lucas.</p>
+
+  <form id="contribForm">
+    <div class="form-row">
+      <label for="contribName">Votre nom</label>
+      <input type="text" id="contribName" placeholder="Prénom Nom">
+    </div>
+
+    <div class="form-row">
+      <label for="contribSubject">Objet</label>
+      <input type="text" id="contribSubject" placeholder="Ex : Photo du mariage de..." required>
+    </div>
+
+    <div class="form-row">
+      <label for="contribMessage">Message</label>
+      <textarea id="contribMessage" placeholder="Écrivez votre message ici..." required></textarea>
+    </div>
+
+    <div class="form-row">
+      <label for="contribFiles">Pièce(s) jointe(s) (facultatif)</label>
+      <input type="file" id="contribFiles" multiple>
+    </div>
+
+    <button type="submit">Ouvrir mon client mail</button>
+
+    <div class="file-reminder" id="fileReminder"></div>
+  </form>
+</section>
+  
   <footer class="note">
     Pour ajouter un article, complétez le tableau <code>articles</code> dans le <code>&lt;script&gt;</code> avec un nouvel objet <code>{ id, titre, tag, image, teaser, sections }</code> — la grille et le panneau de détail s'adaptent automatiquement. Chaque section suit le même principe que celui utilisé pour la Haute-Vienne : un sous-titre (<code>titre</code>), un texte (<code>texte</code>), et une image optionnelle (<code>image</code>).
   </footer>
@@ -406,6 +519,35 @@ header.masthead .kicker a:hover {
     card.addEventListener('click', () => showArticle(a.id));
     gridEl.appendChild(card);
   });
+
+const contribForm = document.getElementById('contribForm');
+const fileReminder = document.getElementById('fileReminder');
+
+contribForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('contribName').value.trim();
+  const subject = document.getElementById('contribSubject').value.trim();
+  const message = document.getElementById('contribMessage').value.trim();
+  const files = document.getElementById('contribFiles').files;
+
+  const signedMessage = name ? message + '\n\n— ' + name : message;
+
+  const mailtoLink = 'mailto:lucasrouer.lr@gmail.com'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(signedMessage);
+
+  window.location.href = mailtoLink;
+
+  if (files.length > 0) {
+    const fileNames = Array.from(files).map(f => f.name).join(', ');
+    fileReminder.innerHTML = '<strong>N\'oubliez pas :</strong> votre navigateur ne peut pas joindre automatiquement de fichier à l\'email. Une fois votre client mail ouvert, ajoutez manuellement : ' + fileNames;
+    fileReminder.classList.add('visible');
+  } else {
+    fileReminder.classList.remove('visible');
+  }
+});
+  
 </script>
  
 </body>
