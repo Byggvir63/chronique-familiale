@@ -6,153 +6,247 @@
 <title>Chronique Familiale</title>
 <style>
   :root {
-    --navy: #1a3d6d;
-    --navy-line: #2b5a9e;
-    --plum: #7a3a7a;
-    --ink: #2b2b2b;
-    --muted: #6b6b6b;
-    --border: #d8d8d8;
+    --paper: #e9ddc0;
+    --paper-dark: #ddcda3;
+    --row-hover: #e2d4ac;
+    --ink: #2b2015;
+    --ink-soft: #5a4c38;
+    --ink-faint: #8a7a5c;
+    --seal: #6b1f2b;
+    --gold: #a3862a;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
+  html { scrollbar-color: var(--ink-soft) var(--paper); }
+ 
   body {
     margin: 0;
-    background: #ffffff;
+    background: var(--paper);
+    background-image:
+      radial-gradient(ellipse at top left, rgba(255,255,255,0.25), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(0,0,0,0.06), transparent 55%);
     color: var(--ink);
-    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding: 32px 20px 60px;
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    padding: 40px 20px 70px;
   }
-
-  .page { max-width: 960px; margin: 0 auto; }
-
-  header {
+ 
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 4px;
+  }
+ 
+  .page::before {
+    content: "";
+    position: absolute;
+    top: -20px; bottom: -30px; left: -20px; right: -20px;
+    border: 1px solid rgba(43,32,21,0.22);
+    pointer-events: none;
+  }
+ 
+  /* ---------- Header / frontispice ---------- */
+ 
+  header.masthead {
     text-align: center;
-    border-bottom: 2px solid var(--navy-line);
-    padding-bottom: 18px;
-    margin-bottom: 24px;
+    padding: 6px 0 30px;
   }
-
-  header h1 {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 0 0 10px;
-    letter-spacing: 0.02em;
+ 
+  .crest {
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 18px;
+    color: var(--seal);
   }
-
-  header .noms {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 0 0 10px;
-  }
-
-  header .tagline {
+ 
+  header.masthead .kicker {
     font-style: italic;
-    color: #b5651d;
-    font-size: 0.98rem;
-    line-height: 1.5;
-    margin: 0;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin: 0 0 6px;
   }
-
+ 
+  header.masthead h1 {
+    font-size: clamp(2.1rem, 5vw, 3rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+ 
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 auto 20px;
+    max-width: 420px;
+  }
+  .ornament .line { flex: 1; height: 1px; background: var(--ink-soft); opacity: 0.55; }
+  .ornament .mark {
+    width: 9px; height: 9px;
+    background: var(--seal);
+    transform: rotate(45deg);
+    flex: none;
+  }
+ 
+  .lignees {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    margin: 0 0 18px;
+    line-height: 1.6;
+  }
+  .lignees .surname { font-variant: small-caps; font-weight: 700; color: var(--ink); }
+ 
+  header.masthead p.tagline {
+    max-width: 46ch;
+    margin: 0 auto;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+ 
+  /* ---------- Bandeau chiffres ---------- */
+ 
   .stats {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 40px;
-    padding: 18px 0 22px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 28px;
+    margin: 30px 0 36px;
+    border-top: 1px solid rgba(43,32,21,0.3);
+    border-bottom: 1px solid rgba(43,32,21,0.3);
+    padding: 20px 0;
   }
-
-  .stat { text-align: center; }
-  .stat .num { font-size: 1.15rem; font-weight: 700; color: var(--ink); }
-  .stat .label { font-size: 0.82rem; color: var(--muted); }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-
-  @media (max-width: 720px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .grid { grid-template-columns: 1fr; }
-  }
-
-  .card {
-    border: 1px solid var(--border);
-    padding: 22px 18px 20px;
+ 
+  .stat {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 4px 26px;
+    position: relative;
+  }
+  .stat + .stat::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 6px; bottom: 6px;
+    width: 1px;
+    background: rgba(43,32,21,0.25);
+  }
+  .stat .num {
+    font-size: 1.3rem;
+    color: var(--seal);
+    line-height: 1.1;
+  }
+  .stat .label {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-top: 3px;
+  }
+ 
+  /* ---------- Table des matières ---------- */
+ 
+  .toc-title {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.92rem;
+    margin: 0 0 6px;
+  }
+ 
+  .toc {
+    border-top: 3px double var(--ink-soft);
+  }
+ 
+  .chapter {
+    display: grid;
+    grid-template-columns: 56px 32px 1fr 28px;
+    align-items: start;
+    gap: 4px 16px;
+    padding: 20px 6px;
     text-decoration: none;
     color: inherit;
+    border-bottom: 1px dashed rgba(43,32,21,0.3);
+    transition: background 0.15s ease;
   }
-
-  .card .arrow-top,
-  .card .arrow-bottom {
-    color: var(--plum);
+  .chapter:hover { background: var(--row-hover); }
+  .chapter:last-child { border-bottom: none; }
+ 
+  .chapter .numeral {
     font-size: 0.95rem;
+    color: var(--ink-faint);
+    padding-top: 3px;
+    text-align: right;
   }
-
-  .card .icon-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    margin: 10px 0 14px;
+ 
+  .chapter .glyph {
+    width: 26px;
+    height: 26px;
+    color: var(--seal);
+    padding-top: 1px;
   }
-  .card .icon-row::before,
-  .card .icon-row::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--navy-line);
+  .chapter .glyph svg { width: 100%; height: 100%; }
+ 
+  .chapter .text h2 {
+    font-size: 1.12rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
   }
-  .card .icon { font-size: 1.3rem; line-height: 1; }
-  .card .icon.fr-flag {
-    font-weight: 700;
-    color: var(--navy-line);
-    font-size: 0.95rem;
+  .chapter .text p {
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 52ch;
   }
-
-  .card h2 {
-    font-size: 1.02rem;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 0 0 10px;
-    line-height: 1.35;
+ 
+  .chapter .go {
+    font-size: 1rem;
+    color: var(--seal);
+    text-align: right;
+    padding-top: 4px;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
   }
-
-  .card p {
-    font-size: 0.9rem;
-    color: var(--plum);
-    line-height: 1.5;
-    margin: 0 0 12px;
-    flex-grow: 1;
+  .chapter:hover .go { opacity: 1; transform: translateX(0); }
+ 
+  .chapter.disabled { cursor: default; }
+  .chapter.disabled:hover { background: none; }
+  .chapter.disabled .numeral,
+  .chapter.disabled .glyph,
+  .chapter.disabled .text h2 { color: var(--ink-faint); }
+  .chapter.disabled .text p { font-style: italic; }
+ 
+  @media (max-width: 560px) {
+    .chapter { grid-template-columns: 40px 24px 1fr; }
+    .chapter .go { display: none; }
+    .stat { padding: 4px 16px; }
   }
-
-  .card.disabled { color: inherit; cursor: default; }
-  .card.disabled h2,
-  .card.disabled .icon-row::before,
-  .card.disabled .icon-row::after { opacity: 0.5; }
-  .card.disabled p { color: var(--muted); font-style: italic; }
 </style>
 </head>
 <body>
 <div class="page">
-
-  <header>
-    <h1>CHRONIQUE FAMILIALE</h1>
-    <p class="noms">ROUER · BES · MAMMET · RIALLAND · JOURNOUD · FEUILLEPAIN</p>
-    <p class="tagline">Des hommes et des femmes ordinaires,<br>pris dans les grands événements de leur temps.</p>
+ 
+  <header class="masthead">
+    <svg class="crest" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3">
+      <path d="M24 4 L40 11 V22 C40 33 33 40 24 44 C15 40 8 33 8 22 V11 Z"/>
+      <path d="M24 12 V32 M16 20 H32" stroke-width="1"/>
+    </svg>
+    <p class="kicker">Depuis 1600</p>
+    <h1>Chronique familiale</h1>
+    <div class="ornament"><span class="line"></span><span class="mark"></span><span class="line"></span></div>
+    <p class="lignees">
+      <span class="surname">Rouer</span>, <span class="surname">Bes</span>, <span class="surname">Mammet</span>,
+      <span class="surname">Rialland</span>, <span class="surname">Journoud</span> et <span class="surname">Feuillepain</span>
+    </p>
+    <p class="tagline">Des hommes et des femmes ordinaires, pris dans les grands événements de leur temps.</p>
   </header>
-
+ 
   <div class="stats">
     <div class="stat"><div class="num">20</div><div class="label">générations</div></div>
     <div class="stat"><div class="num">8000</div><div class="label">individus</div></div>
@@ -160,81 +254,102 @@
     <div class="stat"><div class="num">13</div><div class="label">pays</div></div>
     <div class="stat"><div class="num">1600 – 2026</div><div class="label">période couverte</div></div>
   </div>
-
-  <div class="grid">
-
-    <a class="card" href="geographie-ancetres.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon fr-flag">FR</span></div>
-      <h2>LA FAMILLE<br>EN FRANCE</h2>
-      <p>Carte interactive des départements et communes où nos ancêtres ont vécu.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+  <p class="toc-title">Table des matières</p>
+ 
+  <nav class="toc">
+ 
+    <a class="chapter" href="geographie-ancetres.html">
+      <span class="numeral">I</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 5c-6 0-11 5-11 11 0 8 11 19 11 19s11-11 11-19c0-6-5-11-11-11z"/><circle cx="20" cy="16" r="4"/></svg></span>
+      <span class="text">
+        <h2>La famille en France</h2>
+        <p>Carte interactive des départements et communes où nos ancêtres ont vécu.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="monde-ancetres.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">🌍</span></div>
-      <h2>LA FAMILLE<br>DANS LE MONDE</h2>
-      <p>Carte interactive des pays où nos ancêtres sont nés, ont vécu ou voyagé.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="monde-ancetres.html">
+      <span class="numeral">II</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="14"/><ellipse cx="20" cy="20" rx="6" ry="14"/><path d="M6 20h28M8.5 12.5h23M8.5 27.5h23"/></svg></span>
+      <span class="text">
+        <h2>La famille dans le monde</h2>
+        <p>Carte interactive des pays où nos ancêtres sont nés, ont vécu ou voyagé.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="histoire-ancetres.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">⏳</span></div>
-      <h2>LA FAMILLE<br>DANS L'HISTOIRE</h2>
-      <p>Une frise chronologique interactive pour replacer nos ancêtres dans leur époque.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="histoire-ancetres.html">
+      <span class="numeral">III</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M11 6h18M11 34h18M13 6c0 8 14 8 14 14s-14 6-14 14M27 6c0 8-14 8-14 14s14 6 14 14"/></svg></span>
+      <span class="text">
+        <h2>La famille dans l'histoire</h2>
+        <p>Une frise chronologique interactive pour replacer nos ancêtres dans leur époque.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="metiers-ancetres.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">🛠️</span></div>
-      <h2>LES MÉTIERS</h2>
-      <p>De la terre aux bureaux, découvrez les métiers exercés par nos ancêtres.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="metiers-ancetres.html">
+      <span class="numeral">IV</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 32 22 18M25 9l6 6-4 4-6-6zM9 31l4 4M25 9c-1.5 1.5-1.5 3.5 0 5s3.5 1.5 5 0"/></svg></span>
+      <span class="text">
+        <h2>Les métiers</h2>
+        <p>De la terre aux bureaux, découvrez les métiers exercés par nos ancêtres.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="portraits-histoires.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">👤</span></div>
-      <h2>PORTRAITS<br>&amp; HISTOIRES</h2>
-      <p>Biographies, anecdotes et destins singuliers de certains ancêtres.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="portraits-histoires.html">
+      <span class="numeral">V</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="9" y="5" width="22" height="30" rx="1"/><circle cx="20" cy="16" r="5"/><path d="M11 30c1-6 6-8 9-8s8 2 9 8"/></svg></span>
+      <span class="text">
+        <h2>Portraits &amp; histoires</h2>
+        <p>Biographies, anecdotes et destins singuliers de certains ancêtres.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="cousinages.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">🧬</span></div>
-      <h2>LES COUSINAGES</h2>
-      <p>Les personnalités célèbres ou remarquables auxquelles la famille se rattache.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="cousinages.html">
+      <span class="numeral">VI</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="8" r="3"/><circle cx="9" cy="32" r="3"/><circle cx="31" cy="32" r="3"/><path d="M20 11v9M20 20 9 29M20 20l11 9"/></svg></span>
+      <span class="text">
+        <h2>Les cousinages</h2>
+        <p>Les personnalités célèbres ou remarquables auxquelles la famille se rattache.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="chronique-genealogiste.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">🔍</span></div>
-      <h2>CHRONIQUE<br>DU GÉNÉALOGISTE</h2>
-      <p>Les coulisses de la recherche : découvertes, archives, méthodes, voyages et énigmes.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="chronique-genealogiste.html">
+      <span class="numeral">VII</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="17" cy="17" r="10"/><path d="M24.5 24.5 33 33"/></svg></span>
+      <span class="text">
+        <h2>Chronique du généalogiste</h2>
+        <p>Les coulisses de la recherche : découvertes, archives, méthodes, voyages et énigmes.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <a class="card" href="famille-aujourdhui.html">
-      <span class="arrow-top">↗</span>
-      <div class="icon-row"><span class="icon">👨‍👩‍👧</span></div>
-      <h2>LA FAMILLE<br>AUJOURD'HUI</h2>
-      <p>La continuité de l'histoire familiale jusqu'à nos jours.</p>
-      <span class="arrow-bottom">↗</span>
+ 
+    <a class="chapter" href="famille-aujourdhui.html">
+      <span class="numeral">VIII</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="15" cy="14" r="5"/><circle cx="27" cy="16" r="4"/><path d="M6 33c0-7 4-11 9-11s9 4 9 11M23 33c0-5.5 2.5-9 7-9s7 3.5 7 9"/></svg></span>
+      <span class="text">
+        <h2>La famille aujourd'hui</h2>
+        <p>La continuité de l'histoire familiale jusqu'à nos jours.</p>
+      </span>
+      <span class="go">↗</span>
     </a>
-
-    <div class="card disabled">
-      <div class="icon-row"><span class="icon">📖</span></div>
-      <h2>À VENIR</h2>
-      <p>À venir.</p>
+ 
+    <div class="chapter disabled">
+      <span class="numeral">IX</span>
+      <span class="glyph"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 9c-3-2-8-2-11 0v22c3-2 8-2 11 0V9zM20 9c3-2 8-2 11 0v22c-3-2-8-2-11 0V9z"/></svg></span>
+      <span class="text">
+        <h2>À paraître</h2>
+        <p>Un prochain chapitre est en préparation.</p>
+      </span>
     </div>
-
-  </div>
-
+ 
+  </nav>
+ 
 </div>
 </body>
 </html>
