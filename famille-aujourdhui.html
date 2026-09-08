@@ -10,11 +10,15 @@
     --paper-dark: #ddcda3;
     --ink: #2b2015;
     --ink-soft: #5a4c38;
+    --ink-faint: #8a7a5c;
     --seal: #6b1f2b;
+    --gold: #a3862a;
+    --navy: #3a5a8c;
+    --teal: #2f6b5e;
   }
-
+ 
   * { box-sizing: border-box; }
-
+ 
   body {
     margin: 0;
     min-height: 100vh;
@@ -24,49 +28,27 @@
       radial-gradient(ellipse at bottom right, rgba(0,0,0,0.06), transparent 55%);
     color: var(--ink);
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
+    padding: 24px 20px 70px;
   }
-
-  .page { max-width: 640px; width: 100%; }
-
-  /* --- Gate --- */
+ 
+  /* ---------- Gate ---------- */
+  .gate-wrap { display: flex; align-items: center; justify-content: center; min-height: 80vh; }
+ 
   #gate {
     background: var(--paper-dark);
     border: 1px solid var(--ink-soft);
     padding: 40px 36px;
     text-align: center;
+    max-width: 480px;
+    width: 100%;
   }
-
-  #gate .kicker {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    margin: 0 0 6px;
-  }
-
-  #gate h1 {
-    font-size: 1.7rem;
-    font-weight: 400;
-    margin: 0 0 18px;
-  }
-
-  #gate p.hint {
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin: 0 0 24px;
-  }
-
-  #passwordForm {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
+ 
+  #gate .kicker { font-style: italic; font-size: 0.9rem; color: var(--ink-faint); margin: 0 0 6px; }
+  #gate h1 { font-size: 1.7rem; font-weight: 400; margin: 0 0 18px; }
+  #gate p.hint { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0 0 24px; }
+ 
+  #passwordForm { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+ 
   #passwordInput {
     font-family: Georgia, serif;
     font-size: 1.1rem;
@@ -78,7 +60,7 @@
     color: var(--ink);
     width: 160px;
   }
-
+ 
   #passwordForm button {
     font-family: Georgia, serif;
     font-size: 1rem;
@@ -89,52 +71,103 @@
     cursor: pointer;
   }
   #passwordForm button:hover { filter: brightness(1.1); }
-
-  #errorMsg {
+ 
+  #errorMsg { color: var(--seal); font-style: italic; font-size: 0.9rem; margin-top: 14px; min-height: 1.2em; }
+ 
+  /* ---------- Content ---------- */
+  #content { display: none; max-width: 720px; margin: 0 auto; }
+ 
+  header.masthead {
+    border-bottom: 3px double var(--ink-soft);
+    padding-bottom: 14px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  header.masthead .kicker { font-style: italic; font-size: 0.9rem; color: var(--ink-faint); margin: 0 0 6px; }
+  header.masthead h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 400; margin: 0 0 10px; }
+  header.masthead p.lede { color: var(--ink-soft); font-size: 0.98rem; line-height: 1.55; margin: 0 auto; max-width: 56ch; }
+ 
+  .legend-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 18px 0 34px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .legend-row .item { display: flex; align-items: center; gap: 6px; }
+  .legend-row .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+ 
+  /* ---------- Timeline ---------- */
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 8px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--ink-soft);
+    opacity: 0.4;
+  }
+ 
+  .year-marker {
+    position: relative;
+    margin: 30px 0 16px;
+    font-style: italic;
     color: var(--seal);
-    font-style: italic;
-    font-size: 0.9rem;
-    margin-top: 14px;
-    min-height: 1.2em;
+    font-size: 1.15rem;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(43,32,21,0.3);
   }
-
-  /* --- Content (revealed after unlock) --- */
-  #content {
-    display: none;
+  .timeline > .year-marker:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+ 
+  .entry { position: relative; margin-bottom: 16px; }
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -22px; top: 7px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cat-color, var(--ink-soft));
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px rgba(43,32,21,0.25);
+  }
+ 
+  .entry .card {
     background: var(--paper-dark);
-    border: 1px solid var(--ink-soft);
-    padding: 34px 38px;
+    border: 1px solid rgba(43,32,21,0.25);
+    padding: 12px 16px;
   }
-
-  #content .kicker {
+ 
+  .entry .meta { margin: 0 0 4px; }
+  .entry .date { font-weight: 700; color: var(--cat-color, var(--ink)); }
+  .entry .cat {
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-left: 8px;
+  }
+  .entry .desc { margin: 0; line-height: 1.6; font-size: 0.98rem; color: var(--ink); }
+ 
+  .cat-naissance { --cat-color: var(--seal); }
+  .cat-mariage    { --cat-color: var(--navy); }
+  .cat-diplome    { --cat-color: var(--gold); }
+  .cat-parcours   { --cat-color: var(--teal); }
+ 
+  footer.note {
+    max-width: 720px;
+    margin: 40px auto 0;
+    font-size: 0.85rem;
     color: var(--ink-soft);
-    margin: 0 0 6px;
-  }
-
-  #content h1 {
-    font-size: 1.8rem;
-    font-weight: 400;
-    margin: 0 0 16px;
-    border-bottom: 2px double var(--ink-soft);
-    padding-bottom: 12px;
-  }
-
-  #content .body-text {
-    line-height: 1.7;
-    font-size: 1.02rem;
-  }
-
-  #content .placeholder {
-    color: var(--ink-soft);
-    font-style: italic;
+    line-height: 1.6;
+    border-top: 1px dashed rgba(43,32,21,0.35);
+    padding-top: 14px;
   }
 </style>
 </head>
 <body>
-<div class="page">
-
+ 
+<div class="gate-wrap" id="gateWrap">
   <div id="gate">
     <p class="kicker">Chronique familiale</p>
     <h1>La famille aujourd'hui</h1>
@@ -145,36 +178,136 @@
     </form>
     <p id="errorMsg"></p>
   </div>
-
-  <div id="content">
+</div>
+ 
+<div id="content">
+ 
+  <header class="masthead">
     <p class="kicker">Chronique familiale</p>
     <h1>La famille aujourd'hui</h1>
-    <div class="body-text">
-      <p class="placeholder">Contenu à venir — cette page attend son texte. Remplace ce paragraphe par ce que tu veux montrer ici (photos, nouvelles de chacun, arbre actuel...).</p>
-    </div>
+    <p class="lede">Naissances, diplômes, mariages, déménagements : le fil des nouvelles de chacun, des plus récentes aux plus anciennes.</p>
+  </header>
+ 
+  <div class="legend-row">
+    <span class="item"><span class="dot" style="background:var(--seal)"></span>Naissance</span>
+    <span class="item"><span class="dot" style="background:var(--navy)"></span>Mariage</span>
+    <span class="item"><span class="dot" style="background:var(--gold)"></span>Diplôme &amp; études</span>
+    <span class="item"><span class="dot" style="background:var(--teal)"></span>Parcours &amp; déménagement</span>
   </div>
-
+ 
+  <div class="timeline">
+ 
+    <div class="year-marker">2027</div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Janvier 2027</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Lucas André Daniel ROUER déménage à Tokyo, au Japon, dans le cadre d'une expatriation en tant que Contrôleur Financier chez Valeo.</p></div></div>
+ 
+    <div class="year-marker">2026</div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Novembre 2026</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Thomas Amédée Antonin ROUER et Camille BEAUVARLET déménagent à Saint-Sauflieu, dont ils deviennent propriétaires.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Septembre 2026</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Benoît Fernand ROUER déménage à Toulouse dans le cadre de son CDI en tant qu'auditeur chez Deloitte.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2026</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours des écoles de commerce, Anaïs GUERRA-RIALLAND intègre l'EDHEC à Lille.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2026</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Emilio GUERRA-RIALLAND obtient son Bac Général avec la mention Très Bien et les félicitations du jury ; il intègre la classe préparatoire des Lazaristes à Lyon, en PCSI/MPSI.</p></div></div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">17 mai 2026</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Thalia ROUER à Lons-le-Saunier, fille de Nicolas ROUER et Gwendoline PRIOU.</p></div></div>
+    <div class="entry cat-mariage"><div class="card"><p class="meta"><span class="date">18 avril 2026</span><span class="cat">Mariage</span></p><p class="desc">Mariage de Thomas Amédée Antonin ROUER avec Camille BEAUVARLET, à la mairie d'Amiens et au château de Ville-le-Marclet.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Avril 2026</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Sidonie BES et Lucas ROUER déménagent à Paris, dans le cadre du stage puis du CDI de Sidonie en tant que Consultante chez Sopra Steria Next.</p></div></div>
+ 
+    <div class="year-marker">2025</div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Septembre 2025</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Sidonie BES part en échange universitaire à Shanghai, en Chine, pendant quatre mois à East China University.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Juillet 2025</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Thomas Amédée Antonin ROUER déménage à Amiens pour son nouveau CDI en tant que Contrôleur de Gestion chez H2Air.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Mars 2025</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Lucas André Daniel ROUER déménage à La Garenne-Colombes dans le cadre de son stage chez Wavestone, puis de son CDI chez Valeo en tant que Contrôleur Financier.</p></div></div>
+ 
+    <div class="year-marker">2024</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">13 octobre 2024</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Ewen ROUER à Lons-le-Saunier, fils de Nicolas ROUER et Gwendoline PRIOU.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Septembre 2024</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Thomas Amédée Antonin ROUER déménage à Lyon, auditeur chez EY Lyon.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2024</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Anaïs GUERRA-RIALLAND obtient son Bac Général avec la mention Très Bien et intègre la classe préparatoire ECG des Chartreux, à Lyon.</p></div></div>
+ 
+    <div class="year-marker">2023</div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Novembre 2023</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Nicolas ROUER et Gwendoline PRIOU déménagent à Bersaillin, dont ils deviennent propriétaires.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Octobre 2023</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Lucas ROUER part en stage à Genève, en Suisse, chez EY, pendant sept mois.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2023</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours des écoles de commerce, Benoît Fernand ROUER intègre Audencia, à Nantes.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Juillet 2023</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Sidonie BES part en stage à Dublin, en Irlande, pendant six mois.</p></div></div>
+ 
+    <div class="year-marker">2022</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2022</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours, Sidonie BES intègre emlyon, à Lyon.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Septembre 2022</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Thomas Amédée Antonin ROUER déménage à Levallois-Perret pour son CDI en tant qu'auditeur chez EY Paris.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Juillet 2022</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Lucas ROUER part en stage au Luxembourg, pendant six mois, chez CACEIS.</p></div></div>
+    <div class="entry cat-mariage"><div class="card"><p class="meta"><span class="date">15 mai 2022</span><span class="cat">Mariage</span></p><p class="desc">Mariage de Nicolas Maurice ROUER avec Gwendoline PRIOU, à la mairie de Volvic, à l'église de Chamalières et à l'hôtel la Rose des Vents de Volvic, détenu par les parents.</p></div></div>
+    <div class="entry cat-parcours"><div class="card"><p class="meta"><span class="date">Janvier 2022</span><span class="cat">Parcours &amp; déménagement</span></p><p class="desc">Nicolas Maurice ROUER déménage à Lons-le-Saunier, dans le Jura, pour son CDI en tant que Responsable Qualité chez Bel.</p></div></div>
+ 
+    <div class="year-marker">2021</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2021</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours des écoles de commerce, Lucas André Daniel ROUER intègre emlyon, à Lyon.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2021</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Benoît Fernand ROUER obtient son Bac général avec la mention Très Bien et les félicitations du jury ; il intègre la classe préparatoire du Lycée Pierre de Fermat, à Toulouse, en ECG.</p></div></div>
+ 
+    <div class="year-marker">2020</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2020</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Sidonie BES obtient son Bac S avec la mention Très Bien ; elle intègre la classe préparatoire MPSI du lycée Pasteur, à Neuilly-sur-Seine.</p></div></div>
+ 
+    <div class="year-marker">2019</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2019</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours des écoles de commerce, Thomas Amédée Antonin ROUER intègre Neoma, à Reims.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2019</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Lucas André Daniel ROUER obtient son Bac S avec la mention Très Bien ; il intègre la classe préparatoire du Lycée Pierre de Fermat, à Toulouse, en ECS.</p></div></div>
+ 
+    <div class="year-marker">2017</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Septembre 2017</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">À l'issue des concours des écoles d'ingénieur, Nicolas Maurice ROUER intègre l'ENSAIA, à Nancy.</p></div></div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2017</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Thomas Amédée Antonin ROUER obtient son Bac S avec la mention Très Bien ; il intègre la classe préparatoire du Lycée du Parc, à Lyon, en ECS.</p></div></div>
+ 
+    <div class="year-marker">2015</div>
+    <div class="entry cat-diplome"><div class="card"><p class="meta"><span class="date">Juillet 2015</span><span class="cat">Diplôme &amp; études</span></p><p class="desc">Nicolas Maurice ROUER obtient son Bac S avec la mention Très Bien ; il intègre la classe préparatoire de Marmilhat (Pasteur), en BCPST.</p></div></div>
+ 
+    <div class="year-marker">2012</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">Juin 2012</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Diego GUERRA-RIALLAND à Pierre-Bénite.</p></div></div>
+ 
+    <div class="year-marker">2010</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">Mai 2010</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Elisa GUERRA-RIALLAND à Pierre-Bénite.</p></div></div>
+ 
+    <div class="year-marker">2008</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">Mai 2008</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Emilio GUERRA-RIALLAND à Pierre-Bénite.</p></div></div>
+ 
+    <div class="year-marker">2006</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">15 décembre 2006</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Anaïs GUERRA-RIALLAND à Écully.</p></div></div>
+ 
+    <div class="year-marker">2003</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">12 avril 2003</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Benoît Fernand ROUER à Singapour.</p></div></div>
+ 
+    <div class="year-marker">2002</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">7 février 2002</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Sidonie Justine BES.</p></div></div>
+ 
+    <div class="year-marker">2001</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">13 novembre 2001</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Adèle BONNOT à Tavaud.</p></div></div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">21 mai 2001</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Lucas André Daniel ROUER à Clermont-Ferrand.</p></div></div>
+ 
+    <div class="year-marker">1999</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">Juillet 1999</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Louis BONNOT à Tavaud.</p></div></div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">5 février 1999</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Thomas Amédée Antonin ROUER à Paris.</p></div></div>
+ 
+    <div class="year-marker">1998</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">Mars 1998</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Hugo BONNOT à Montauban.</p></div></div>
+ 
+    <div class="year-marker">1997</div>
+    <div class="entry cat-naissance"><div class="card"><p class="meta"><span class="date">13 juin 1997</span><span class="cat">Naissance</span></p><p class="desc">Naissance de Nicolas Maurice ROUER à Lyon.</p></div></div>
+ 
+  </div>
+ 
+  <footer class="note">
+    Pour ajouter un événement, dupliquez un bloc <code>&lt;div class="entry cat-...">&lt;/div&gt;</code> dans le <code>&lt;div class="timeline"&gt;</code>, en choisissant la catégorie (<code>cat-naissance</code>, <code>cat-mariage</code>, <code>cat-diplome</code> ou <code>cat-parcours</code>) et en plaçant l'entrée sous le bon <code>year-marker</code> — créez-en un nouveau si l'année n'existe pas encore.
+  </footer>
+ 
 </div>
-
+ 
 <script>
   const CORRECT_PASSWORD = "6387";
-
-  const gate = document.getElementById('gate');
+ 
+  const gateWrap = document.getElementById('gateWrap');
   const content = document.getElementById('content');
   const form = document.getElementById('passwordForm');
   const input = document.getElementById('passwordInput');
   const errorMsg = document.getElementById('errorMsg');
-
+ 
   function unlock() {
-    gate.style.display = 'none';
+    gateWrap.style.display = 'none';
     content.style.display = 'block';
   }
-
-  // Stay unlocked for the rest of this browser session only
+ 
   if (sessionStorage.getItem('famille_unlocked') === 'yes') {
     unlock();
   }
-
+ 
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     if (input.value.trim() === CORRECT_PASSWORD) {
@@ -187,6 +320,6 @@
     }
   });
 </script>
-
+ 
 </body>
 </html>
