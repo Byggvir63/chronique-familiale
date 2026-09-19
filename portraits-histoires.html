@@ -582,8 +582,10 @@ header.masthead .kicker a:hover {
     const card = document.createElement('div');
     card.className = 'card';
     card.id = 'card-' + p.id;
-    const imgHeightAttr = p.imgHeight ? ' style="height:' + p.imgHeight + '"' : '';
-    const imgHtml = p.image ? '<img class="card-img" src="' + p.image + '" alt=""' + imgHeightAttr + '>' : '';
+    const imgHeightAttr = p.imgHeight ? 'height:' + p.imgHeight + ';' : '';
+    const imgPositionAttr = p.imgPosition ? 'object-position:' + p.imgPosition + ';' : '';
+    const imgStyle = (imgHeightAttr || imgPositionAttr) ? ' style="' + imgHeightAttr + imgPositionAttr + '"' : '';
+    const imgHtml = p.image ? '<img class="card-img" src="' + p.image + '" alt=""' + imgStyle + '>' : '';
     card.innerHTML =
       imgHtml +
       '<span class="tag">' + p.tag + '</span>' +
