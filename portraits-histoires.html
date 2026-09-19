@@ -582,7 +582,8 @@ header.masthead .kicker a:hover {
     const card = document.createElement('div');
     card.className = 'card';
     card.id = 'card-' + p.id;
-    const imgHtml = p.image ? '<img class="card-img" src="' + p.image + '" alt="">' : '';
+    const imgHeightAttr = p.imgHeight ? ' style="height:' + p.imgHeight + '"' : '';
+    const imgHtml = p.image ? '<img class="card-img" src="' + p.image + '" alt=""' + imgHeightAttr + '>' : '';
     card.innerHTML =
       imgHtml +
       '<span class="tag">' + p.tag + '</span>' +
